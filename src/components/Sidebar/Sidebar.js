@@ -21,12 +21,25 @@ const StyledWrapper = styled.div`
   align-items: center;
 `;
 const LoginSignupWrapper = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-around;
+  margin-bottom: 20px;
+
+  a {
+    padding: 15px 20px;
+    border-radius: 8px;
+  }
+
+  .active {
+    background-color: #f2f2f2;
+    color: #a63446;
+    transform: translateY(-10px);
+  }
 `;
 
 const StyledImage = styled.img`
-  width: 80px;
+  width: 90px;
   color: white;
 `;
 
@@ -34,16 +47,7 @@ const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   color: white;
   font-size: 20px;
-  padding: 20px 30px;
-  font-weight: bold;
   transition: 0.3s;
-
-  :hover {
-    background-color: #fff;
-    border-radius: 8px;
-    color: #a63446;
-    transform: translateY(-5px);
-  }
 `;
 const StyledTitleContainer = styled.div`
   display: flex;
@@ -51,8 +55,30 @@ const StyledTitleContainer = styled.div`
   align-items: center;
 `;
 const StyledTitle = styled.h2`
+  color: #fff;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
+`;
+
+const StyledLinksContainer = styled.div`
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  a {
+    padding: 10px 0;
+    margin-top: 30px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .active {
+    color: #a63446;
+    background-color: #f2f2f2;
+  }
 `;
 
 function Sidebar() {
@@ -63,6 +89,10 @@ function Sidebar() {
           <StyledTitle>PhotoApp</StyledTitle>
           <StyledImage src={CameraIcon} />
         </StyledTitleContainer>
+        <StyledLinksContainer>
+          <StyledNavLink to={paths.home}>Home</StyledNavLink>
+          <StyledNavLink to={paths.create}>Create</StyledNavLink>
+        </StyledLinksContainer>
         <LoginSignupWrapper>
           <StyledNavLink to={paths.login}>Login</StyledNavLink>
           <StyledNavLink to={paths.signup}>Signup</StyledNavLink>
