@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { paths } from "../../paths/paths";
 import CameraIcon from "../../assets/images/camera.svg";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const StyledContainer = styled.div`
   min-width: 300px;
@@ -83,10 +84,13 @@ const StyledLinksContainer = styled.div`
 `;
 
 function Sidebar() {
+  const { user } = useAuthContext();
+  console.log(user);
   return (
     <StyledContainer>
       <StyledWrapper>
         <StyledTitleContainer>
+          {user && <div>{user.name}</div>}
           <StyledTitle>PhotoApp</StyledTitle>
           <StyledImage src={CameraIcon} />
         </StyledTitleContainer>

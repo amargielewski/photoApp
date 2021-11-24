@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
+import { useSignup } from "../hooks/useSignup";
 const StyledWrapper = styled.div`
   height: 100vh;
   display: flex;
@@ -10,7 +11,7 @@ const StyledWrapper = styled.div`
 
 const StyledForm = styled.form`
   width: 700px;
-  height: 450px;
+  height: 500px;
   box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -58,11 +59,36 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [avatar, setAvatar] = useState(null);
+  const [avatarError, setAvatarError] = useState(null);
+  const { signup } = useSignup();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(email, password, name);
+    signup(email, password, name, avatar);
+  };
+
+  const handleFileChange = (e) => {
+    setAvatar(null);
+
+    let selected = e.target.files[0];
+
+    if (!selected) {
+      setAvatarError("Please Select a File");
+      return;
+    }
+    if (!selected.type.includes("image")) {
+      setAvatarError("Selected file must be image");
+      return;
+    }
+    if (selected.size > 500000) {
+      setAvatarError("Image file size must be less then 100000kb");
+      return;
+    }
+
+    setAvatar(selected);
+    console.log("Avatar updated");
   };
 
   return (
@@ -75,6 +101,7 @@ function Signup() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </StyledLabel>
         <StyledLabel>
@@ -83,6 +110,7 @@ function Signup() {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
+            required
           />
         </StyledLabel>
         <StyledLabel>
@@ -91,9 +119,15 @@ function Signup() {
             type="text"
             onChange={(e) => setName(e.target.value)}
             value={name}
+            required
           />
         </StyledLabel>
+        <StyledLabel>
+          <StyledInputTitle>Avatar:</StyledInputTitle>
+          <StyledInput type="file" onChange={handleFileChange} required />
+        </StyledLabel>
         <StyledButton>Signup</StyledButton>
+        {avatarError && <div>{avatarError}</div>}
       </StyledForm>
     </StyledWrapper>
   );
