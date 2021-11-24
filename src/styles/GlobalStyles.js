@@ -6,7 +6,6 @@ body {
     padding: 0;
     background: #f2f2f2;
     font-family: 'Roboto', sans-serif;
-    height: 2000px;
     padding-left: 300px;
   }
 
