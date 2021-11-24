@@ -40,7 +40,6 @@ const LoginSignupWrapper = styled.div`
 
 const StyledImage = styled.img`
   width: 90px;
-  color: white;
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -48,6 +47,7 @@ const StyledNavLink = styled(NavLink)`
   color: white;
   font-size: 20px;
   transition: 0.3s;
+  font-weight: 400;
 `;
 const StyledTitleContainer = styled.div`
   display: flex;
@@ -58,6 +58,7 @@ const StyledTitle = styled.h2`
   color: #fff;
   font-weight: bold;
   font-size: 25px;
+  letter-spacing: 3px;
 `;
 
 const StyledLinksContainer = styled.div`

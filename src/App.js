@@ -12,18 +12,25 @@ const StyledWrapper = styled.div`
   display: flex;
 `;
 
+const StyledContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
 function App() {
   return (
     <StyledWrapper className="App">
       <GlobalStyle />
       <BrowserRouter>
         <Sidebar />
-        <Routes>
-          <Route path={paths.home} element={<Home />} />
-          <Route path={paths.create} element={<Create />} />
-          <Route path={paths.signup} element={<Signup />} />
-          <Route path={paths.login} element={<Login />} />
-        </Routes>
+        <StyledContainer>
+          <Routes>
+            <Route path={paths.home} element={<Home />} />
+            <Route path={paths.create} element={<Create />} />
+            <Route path={paths.signup} element={<Signup />} />
+            <Route path={paths.login} element={<Login />} />
+          </Routes>
+        </StyledContainer>
       </BrowserRouter>
     </StyledWrapper>
   );
