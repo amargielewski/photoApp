@@ -1,11 +1,20 @@
+import Sidebar from "./components/Sidebar/Sidebar";
 import GlobalStyle from "./styles/GlobalStyles";
+import styled from "styled-components";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+const StyledWrapper = styled.div`
+  display: flex;
+`;
 
 function App() {
   return (
-    <div className="App">
+    <StyledWrapper className="App">
       <GlobalStyle />
-      <p>hej</p>
-    </div>
+      <Sidebar />
+      <BrowserRouter>
+        <p>hej</p>
+      </BrowserRouter>
+    </StyledWrapper>
   );
 }
 
