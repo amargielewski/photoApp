@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuthContext } from "./useAuthContext";
 //firebase imports
 import { auth, fbStorage, database } from "../firebase/config";
@@ -34,16 +34,21 @@ export const useSignup = () => {
 
       await uploadBytes(imageRef, avatar);
 
+      //get image URL
+
       const getUrl = await getDownloadURL(imageRef).then((url) => {
         return url;
       });
 
-      const currentUser = await getAuth();
+      // Update User Profile
 
-      await updateProfile(currentUser.currentUser, {
+      const user = await getAuth();
+
+      await updateProfile(user.currentUser, {
         photoURL: getUrl,
         displayName: name,
       });
+
       // create a user documment
 
       const userRef = await collection(database, "users");
@@ -55,10 +60,19 @@ export const useSignup = () => {
 
       //dispatch login action
 
-      dispatch({ type: "LOGIN", payload: res.user });
+      await dispatch({ type: "LOGIN", payload: res.user });
+
+      setIsPending(false);
+      setError(null);
     } catch (err) {
-      console.log(err);
+      if (err) {
+        setError(err.message);
+        setIsPending(false);
+      }
     }
   };
+
+  useEffect(() => {}, []);
+
   return { signup, error, isPending };
 };

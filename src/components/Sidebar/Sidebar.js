@@ -85,12 +85,12 @@ const StyledLinksContainer = styled.div`
 
 function Sidebar() {
   const { user } = useAuthContext();
-  console.log(user);
+
   return (
     <StyledContainer>
       <StyledWrapper>
         <StyledTitleContainer>
-          {user && <div>{user.name}</div>}
+          {user && <div>{user.displayName}</div>}
           <StyledTitle>PhotoApp</StyledTitle>
           <StyledImage src={CameraIcon} />
         </StyledTitleContainer>
