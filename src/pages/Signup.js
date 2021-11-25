@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useSignup } from "../hooks/useSignup";
 const StyledWrapper = styled.div`
@@ -45,7 +46,6 @@ const StyledLabel = styled.label`
 const StyledButton = styled.button`
   margin-top: 20px;
   text-transform: uppercase;
-  align-self: center;
   border: none;
   font-size: 20px;
   padding: 10px 20px;
@@ -61,12 +61,16 @@ function Signup() {
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState(null);
   const [avatarError, setAvatarError] = useState(null);
-  const { signup } = useSignup();
+  const { signup, isPending, error } = useSignup();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    signup(email, password, name, avatar);
+    await signup(email, password, name, avatar);
+
+    resetForm();
+    navigate("/");
   };
 
   const handleFileChange = (e) => {
@@ -83,12 +87,18 @@ function Signup() {
       return;
     }
     if (selected.size > 500000) {
-      setAvatarError("Image file size must be less then 100000kb");
+      setAvatarError("Image file size must be less then 500000kb");
       return;
     }
 
     setAvatar(selected);
-    console.log("Avatar updated");
+  };
+
+  const resetForm = () => {
+    setEmail("");
+    setPassword("");
+    setName("");
+    setAvatar(null);
   };
 
   return (
@@ -126,8 +136,15 @@ function Signup() {
           <StyledInputTitle>Avatar:</StyledInputTitle>
           <StyledInput type="file" onChange={handleFileChange} required />
         </StyledLabel>
-        <StyledButton>Signup</StyledButton>
+        {!isPending ? (
+          <StyledButton>Signup</StyledButton>
+        ) : (
+          <StyledButton>Loading...</StyledButton>
+        )}
+
         {avatarError && <div>{avatarError}</div>}
+
+        {error && <div>{error}</div>}
       </StyledForm>
     </StyledWrapper>
   );

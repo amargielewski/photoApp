@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
+import useLogin from "../hooks/useLogin";
+import { useNavigate } from "react-router";
 
 const StyledWrapper = styled.div`
   height: 100vh;
@@ -45,7 +47,6 @@ const StyledLabel = styled.label`
 const StyledButton = styled.button`
   margin-top: 20px;
   text-transform: uppercase;
-  align-self: center;
   border: none;
   font-size: 20px;
   padding: 10px 20px;
@@ -58,10 +59,14 @@ const StyledButton = styled.button`
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login, isPending, error } = useLogin();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email, password);
+    await login(email, password);
+
+    navigate("/");
   };
 
   return (
@@ -87,6 +92,7 @@ function Login() {
           />
         </StyledLabel>
         <StyledButton>login</StyledButton>
+        {error && <p>{error}</p>}
       </StyledForm>
     </StyledWrapper>
   );
