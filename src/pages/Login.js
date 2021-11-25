@@ -47,7 +47,6 @@ const StyledLabel = styled.label`
 const StyledButton = styled.button`
   margin-top: 20px;
   text-transform: uppercase;
-  align-self: center;
   border: none;
   font-size: 20px;
   padding: 10px 20px;

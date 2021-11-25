@@ -1,5 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { database, fbStorage } from "../firebase/config";
+import { addDoc, collection } from "@firebase/firestore";
+import { getDownloadURL, uploadBytes, ref } from "@firebase/storage";
 
 const StyledWrapper = styled.div`
   height: 100vh;
@@ -44,7 +48,6 @@ const StyledLabel = styled.label`
 const StyledButton = styled.button`
   margin-top: 20px;
   text-transform: uppercase;
-  align-self: center;
   border: none;
   font-size: 20px;
   padding: 10px 20px;
@@ -66,6 +69,7 @@ function Create() {
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState(null);
   const [photoError, setPhotoError] = useState(null);
+  const { user } = useAuthContext();
 
   const handleFileChange = (e) => {
     setPhoto(null);
@@ -88,9 +92,34 @@ function Create() {
     setPhoto(selected);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(name, description, photo);
+
+    const photoRef = await collection(database, "photos");
+
+    const uploadPath = `/photos/${user.uid}/${photo.name}`;
+
+    const imageRef = ref(fbStorage, uploadPath);
+
+    await uploadBytes(imageRef, photo);
+
+    const getUrl = await getDownloadURL(imageRef).then((url) => url);
+
+    const createdBy = {
+      displayName: user.displayName,
+      userPhotoURL: user.photoURL,
+      id: user.uid,
+    };
+
+    const project = {
+      name,
+      description,
+      photoURL: getUrl,
+      comments: [],
+      createdBy,
+    };
+
+    await addDoc(photoRef, project);
   };
 
   return (
