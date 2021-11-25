@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import { paths } from "../../paths/paths";
 import CameraIcon from "../../assets/images/camera.svg";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { useLogout } from "../../hooks/useLogout";
+import Avatar from "../avatar/Avatar";
 
 const StyledContainer = styled.div`
   min-width: 300px;
@@ -62,6 +64,43 @@ const StyledTitle = styled.h2`
   letter-spacing: 3px;
 `;
 
+const StyledLogoutButton = styled.button`
+  padding: 10px 20px;
+  border: 1px solid #fff;
+  background-color: transparent;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+
+  :hover {
+    background-color: #fff;
+    color: #a63446;
+    transform: translateY(-10px);
+  }
+`;
+
+const StyledUserContainer = styled.div`
+  margin-top: 30px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+
+  ::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 1px;
+    background-color: #c9c9c9;
+
+    bottom: -10px;
+  }
+`;
+
 const StyledLinksContainer = styled.div`
   margin-top: 100px;
   display: flex;
@@ -83,24 +122,42 @@ const StyledLinksContainer = styled.div`
   }
 `;
 
+const StyledUsername = styled.p`
+  font-size: 20px;
+  margin-right: 20px;
+  font-weight: 400;
+`;
+
 function Sidebar() {
   const { user } = useAuthContext();
+  const { logout } = useLogout();
 
   return (
     <StyledContainer>
       <StyledWrapper>
         <StyledTitleContainer>
-          {user && <div>{user.displayName}</div>}
           <StyledTitle>PhotoApp</StyledTitle>
           <StyledImage src={CameraIcon} />
+          {user && (
+            <StyledUserContainer>
+              <StyledUsername>Hi {user.displayName}</StyledUsername>
+              <Avatar url={user.photoURL} />
+            </StyledUserContainer>
+          )}
         </StyledTitleContainer>
         <StyledLinksContainer>
           <StyledNavLink to={paths.home}>Home</StyledNavLink>
           <StyledNavLink to={paths.create}>Create</StyledNavLink>
         </StyledLinksContainer>
         <LoginSignupWrapper>
-          <StyledNavLink to={paths.login}>Login</StyledNavLink>
-          <StyledNavLink to={paths.signup}>Signup</StyledNavLink>
+          {!user ? (
+            <>
+              <StyledNavLink to={paths.login}>Login</StyledNavLink>
+              <StyledNavLink to={paths.signup}>Signup</StyledNavLink>
+            </>
+          ) : (
+            <StyledLogoutButton onClick={logout}>logout</StyledLogoutButton>
+          )}
         </LoginSignupWrapper>
       </StyledWrapper>
     </StyledContainer>
