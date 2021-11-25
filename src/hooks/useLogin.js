@@ -14,14 +14,14 @@ function useLogin() {
     await signInWithEmailAndPassword(auth, email, password)
       .then((res) => {
         dispatch({ type: "LOGIN", payload: res.user });
+
+        setError(null);
+        setIsPending(false);
       })
       .catch((err) => {
-        setError(err.message);
+        setError("Wrong email address or password");
         setIsPending(false);
       });
-
-    setError(null);
-    setIsPending(false);
   };
 
   return { login, isPending, error };

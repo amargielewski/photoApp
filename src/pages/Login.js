@@ -93,6 +93,7 @@ function Login() {
           />
         </StyledLabel>
         <StyledButton>login</StyledButton>
+        {error && <p>{error}</p>}
       </StyledForm>
     </StyledWrapper>
   );
