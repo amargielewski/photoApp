@@ -15,6 +15,7 @@ const CardWrapper = styled.div`
 
 const StyledImage = styled.img`
   margin-top: 20px;
+  padding: 0 20px;
   width: 200px;
   height: 200px;
 `;
@@ -37,8 +38,10 @@ const StyledLink = styled(Link)`
 `;
 
 const StyledWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  margin-left: 50px;
+  justify-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 const StyledAvatar = styled(Avatar)``;
