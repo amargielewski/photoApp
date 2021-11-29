@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Avatar from "../avatar/Avatar";
+import { Link } from "react-router-dom";
 
 const CardWrapper = styled.div`
   max-width: 300px;
@@ -30,22 +31,34 @@ const StyledInfoWrapper = styled.div`
   margin: 30px 0;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: #444;
+`;
+
+const StyledWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+`;
+
 const StyledAvatar = styled(Avatar)``;
 
 function PhotoList({ document }) {
   return (
-    <div>
+    <StyledWrapper>
       {document &&
         document.map((doc) => (
-          <CardWrapper key={doc.id}>
-            <StyledImage src={doc.photoURL} alt={doc.name} />
-            <StyledInfoWrapper>
-              <StyledAvatar url={doc.createdBy.userPhotoURL} />
-              <StyledName>Author: {doc.createdBy.displayName}</StyledName>
-            </StyledInfoWrapper>
-          </CardWrapper>
+          <StyledLink key={doc.id} to={"/details/" + doc.id}>
+            <CardWrapper key={doc.id}>
+              <StyledImage src={doc.photoURL} alt={doc.name} />
+              <StyledInfoWrapper>
+                <StyledAvatar url={doc.createdBy.userPhotoURL} />
+                <StyledName>Photo by: {doc.createdBy.displayName}</StyledName>
+              </StyledInfoWrapper>
+            </CardWrapper>
+          </StyledLink>
         ))}
-    </div>
+    </StyledWrapper>
   );
 }
 
