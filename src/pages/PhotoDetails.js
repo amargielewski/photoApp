@@ -15,7 +15,6 @@ const StyledWrapper = styled.div`
 
 const StyledContainer = styled.div`
   position: relative;
-
   box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   padding: 50px 50px;
@@ -89,7 +88,6 @@ function PhotoDetails() {
     });
   }, [postID]);
 
-  console.log(data);
   if (!data) return <div>Waiting for Data</div>;
 
   const handleDelete = async () => {
