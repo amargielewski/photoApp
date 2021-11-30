@@ -8,6 +8,7 @@ import Create from "./pages/Create";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import PhotoDetails from "./pages/PhotoDetails";
+import UserProfile from "./pages/UserProfile";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -31,6 +32,7 @@ function App() {
             <Route path={paths.signup} element={<Signup />} />
             <Route path={paths.login} element={<Login />} />
             <Route path={paths.photoDetailsId} element={<PhotoDetails />} />
+            <Route path={paths.userProfile} element={<UserProfile />} />
           </Routes>
         </StyledContainer>
       </BrowserRouter>

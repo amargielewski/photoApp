@@ -47,7 +47,7 @@ const StyledWrapper = styled.div`
 const StyledAvatar = styled(Avatar)``;
 
 function PhotoList({ document }) {
-  if (!document) return <div>Nie działą</div>;
+  if (!document) return <div>Waiting for documents to load</div>;
 
   return (
     <StyledWrapper>
