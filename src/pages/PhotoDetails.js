@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
+import { useParams, useNavigate } from "react-router-dom";
+import { doc, getDoc, deleteDoc } from "firebase/firestore";
 import { database } from "../firebase/config";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -80,6 +80,7 @@ function PhotoDetails() {
   const [data, setData] = useState(null);
   const { id: postID } = useParams();
   const { user } = useAuthContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const docRef = doc(database, "photos", postID);
@@ -91,11 +92,19 @@ function PhotoDetails() {
   console.log(data);
   if (!data) return <div>Waiting for Data</div>;
 
+  const handleDelete = async () => {
+    const docRef = doc(database, "photos", postID);
+    await deleteDoc(docRef);
+    navigate("/");
+  };
+
   return (
     <StyledWrapper>
       <StyledContainer>
         {user.uid === data.createdBy.id && (
-          <StyledDeleteButton>Delete Post</StyledDeleteButton>
+          <StyledDeleteButton onClick={handleDelete}>
+            Delete Post
+          </StyledDeleteButton>
         )}
         <StyledAuthorContainer>
           <StyledAvatarContainer>
