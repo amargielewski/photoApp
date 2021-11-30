@@ -1,8 +1,11 @@
-import Sidebar from "./components/Sidebar/Sidebar";
 import GlobalStyle from "./styles/GlobalStyles";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { paths } from "./paths/paths";
+import { theme } from "./styles/mainTheme";
+
+//pages && components
+import Sidebar from "./components/Sidebar/Sidebar";
 import Home from "./pages/Home";
 import Create from "./pages/Create";
 import Signup from "./pages/Signup";
@@ -21,22 +24,24 @@ const StyledContainer = styled.div`
 
 function App() {
   return (
-    <StyledWrapper className="App">
-      <GlobalStyle />
-      <BrowserRouter>
-        <Sidebar />
-        <StyledContainer>
-          <Routes>
-            <Route path={paths.home} element={<Home />} />
-            <Route path={paths.create} element={<Create />} />
-            <Route path={paths.signup} element={<Signup />} />
-            <Route path={paths.login} element={<Login />} />
-            <Route path={paths.photoDetailsId} element={<PhotoDetails />} />
-            <Route path={paths.userProfile} element={<UserProfile />} />
-          </Routes>
-        </StyledContainer>
-      </BrowserRouter>
-    </StyledWrapper>
+    <ThemeProvider theme={theme}>
+      <StyledWrapper className="App">
+        <GlobalStyle />
+        <BrowserRouter>
+          <Sidebar />
+          <StyledContainer>
+            <Routes>
+              <Route path={paths.home} element={<Home />} />
+              <Route path={paths.create} element={<Create />} />
+              <Route path={paths.signup} element={<Signup />} />
+              <Route path={paths.login} element={<Login />} />
+              <Route path={paths.photoDetailsId} element={<PhotoDetails />} />
+              <Route path={paths.userProfile} element={<UserProfile />} />
+            </Routes>
+          </StyledContainer>
+        </BrowserRouter>
+      </StyledWrapper>
+    </ThemeProvider>
   );
 }
 

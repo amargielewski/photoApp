@@ -13,28 +13,28 @@ const StyledWrapper = styled.div`
 const StyledForm = styled.form`
   width: 700px;
   height: 500px;
-  box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: ${({ theme }) => theme.boxShadow.primary};
   display: flex;
   flex-direction: column;
-  background-color: white;
-  border-radius: 8px;
+  background-color: ${({ theme }) => theme.colors.secondaryBackground};
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
   align-items: center;
 `;
 
 const StyledTitle = styled.h2`
-  font-size: 40px;
-  font-weight: 500;
-  color: #333333;
+  font-size: ${({ theme }) => theme.fontSize.xl};
+  font-weight: ${({ theme }) => theme.fontWeight.medium};
+  color: ${({ theme }) => theme.colors.primaryFont};
 `;
 
 const StyledInputTitle = styled.span`
-  font-size: 20px;
-  font-weight: 400;
+  font-size: ${({ theme }) => theme.fontSize.m};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
 `;
 
 const StyledInput = styled.input`
   width: 400px;
-  font-size: 20px;
+  font-size: ${({ theme }) => theme.fontSize.m};
   padding: 5px 5px;
   display: block;
 `;
@@ -47,12 +47,12 @@ const StyledButton = styled.button`
   margin-top: 20px;
   text-transform: uppercase;
   border: none;
-  font-size: 20px;
+  font-size: ${({ theme }) => theme.fontSize.m};
   padding: 10px 20px;
-  background-color: #a63446;
-  color: white;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.secondaryFont};
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
 `;
 
 function Signup() {

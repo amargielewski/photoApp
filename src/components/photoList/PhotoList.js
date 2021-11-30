@@ -8,7 +8,7 @@ const CardWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #fff;
-  box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: ${({ theme }) => theme.boxShadow.primary};
   cursor: pointer;
   margin: 20px;
 `;
@@ -21,8 +21,7 @@ const StyledImage = styled.img`
 `;
 
 const StyledName = styled.p`
-  font-size: 20px;
-  font-weight: 400;
+  font-size: ${({ theme }) => theme.fontSize.m};
 `;
 
 const StyledInfoWrapper = styled.div`
@@ -34,7 +33,8 @@ const StyledInfoWrapper = styled.div`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: #444;
+  color: ${({ theme }) => theme.colors.primaryFont};
+  font-weight: ${({ theme }) => theme.fontWeight.light};
 `;
 
 const StyledWrapper = styled.div`

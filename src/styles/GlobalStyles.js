@@ -1,10 +1,11 @@
 import { createGlobalStyle } from "styled-components";
+import { theme } from "./mainTheme";
 
 const GlobalStyle = createGlobalStyle`
 body {
     margin: 0;
     padding: 0;
-    background: #f2f2f2;
+    background: ${({ thene }) => theme.colors.primaryBackground};
     font-family: 'Roboto', sans-serif;
     padding-left: 300px;
   }

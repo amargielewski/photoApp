@@ -15,8 +15,8 @@ const StyledWrapper = styled.div`
 
 const StyledContainer = styled.div`
   position: relative;
-  box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  box-shadow: ${({ theme }) => theme.boxShadow.primary};
+  background-color: ${({ theme }) => theme.colors.secondaryBackground};
   padding: 50px 50px;
 `;
 
@@ -35,16 +35,16 @@ const StyledAuthorContainer = styled.div`
   ::after {
     position: absolute;
     width: 100%;
-    height: 1px;
-    background-color: #f2f2f2;
+    height: 2px;
+    background-color: ${({ theme }) => theme.colors.primaryBackground};
     content: "";
     bottom: -5px;
   }
 `;
 
 const StyledAuthorName = styled.p`
-  font-size: 15px;
-  font-weight: 400;
+  font-size: ${({ theme }) => theme.fontSize.s};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
   margin-right: 15px;
 `;
 
@@ -58,8 +58,8 @@ const StyledDateContainer = styled.div`
 `;
 
 const StyledDateText = styled.p`
-  font-size: 15px;
-  font-weight: 400;
+  font-size: ${({ theme }) => theme.fontSize.s};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
 `;
 
 const StyledDeleteButton = styled.button`
@@ -67,10 +67,10 @@ const StyledDeleteButton = styled.button`
   top: 0;
   right: 0;
   border: none;
-  background-color: #a63446;
-  font-size: 15px;
-  color: white;
-  font-weight: 300;
+  background-color: ${({ theme }) => theme.colors.primary};
+  font-size: ${({ theme }) => theme.fontSize.s};
+  color: ${({ theme }) => theme.colors.secondaryFont};
+  font-weight: ${({ theme }) => theme.fontWeight.thin};
   padding: 10px;
   cursor: pointer;
 `;

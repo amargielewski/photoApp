@@ -10,11 +10,10 @@ const StyledContainer = styled.div`
   min-width: 300px;
   min-height: 100vh;
   height: 100%;
-  background-color: #a63446;
+  background-color: ${({ theme }) => theme.colors.primary};
   position: fixed;
   top: 0;
   left: 0;
-  color: white;
 `;
 const StyledWrapper = styled.div`
   height: inherit;
@@ -35,22 +34,22 @@ const LoginSignupWrapper = styled.div`
   }
 
   .active {
-    background-color: #f2f2f2;
-    color: #a63446;
+    background-color: ${({ theme }) => theme.colors.primaryBackground};
+    color: ${({ theme }) => theme.colors.primary};
     transform: translateY(-10px);
   }
 `;
 
 const StyledImage = styled.img`
-  width: 90px;
+  width: 80px;
 `;
 
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
-  color: white;
-  font-size: 20px;
+  color: ${({ theme }) => theme.colors.secondaryFont};
+  font-size: ${({ theme }) => theme.fontSize.m};
   transition: 0.3s;
-  font-weight: 400;
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
 `;
 const StyledTitleContainer = styled.div`
   display: flex;
@@ -58,26 +57,26 @@ const StyledTitleContainer = styled.div`
   align-items: center;
 `;
 const StyledTitle = styled.h2`
-  color: #fff;
+  color: ${({ theme }) => theme.colors.secondaryFont};
   font-weight: bold;
-  font-size: 25px;
+  font-size: ${({ theme }) => theme.fontSize.l};
   letter-spacing: 3px;
 `;
 
 const StyledLogoutButton = styled.button`
   padding: 10px 20px;
-  border: 1px solid #fff;
+  border: 1px solid ${({ theme }) => theme.colors.secondaryFont};
   background-color: transparent;
-  font-size: 20px;
+  font-size: ${({ theme }) => theme.fontSize.m};
   text-transform: uppercase;
-  color: white;
+  color: ${({ theme }) => theme.colors.secondaryFont};
   cursor: pointer;
   border-radius: 8px;
   transition: 0.3s;
 
   :hover {
     background-color: #fff;
-    color: #a63446;
+    color: ${({ theme }) => theme.colors.primary};
     transform: translateY(-10px);
   }
 `;
@@ -95,8 +94,7 @@ const StyledUserContainer = styled.div`
     position: absolute;
     width: 300px;
     height: 1px;
-    background-color: #c9c9c9;
-
+    background-color: ${({ theme }) => theme.colors.secondaryFont};
     bottom: -10px;
   }
 `;
@@ -117,15 +115,16 @@ const StyledLinksContainer = styled.div`
   }
 
   .active {
-    color: #a63446;
-    background-color: #f2f2f2;
+    color: ${({ theme }) => theme.colors.primary};
+    background-color: ${({ theme }) => theme.colors.primaryBackground};
   }
 `;
 
 const StyledUsername = styled.p`
-  font-size: 20px;
+  font-size: ${({ theme }) => theme.fontSize.m};
+  color: ${({ theme }) => theme.colors.secondaryFont};
   margin-right: 20px;
-  font-weight: 400;
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
 `;
 
 function Sidebar() {
