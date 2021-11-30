@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Avatar from "../avatar/Avatar";
+import { Link } from "react-router-dom";
 
 const CardWrapper = styled.div`
   max-width: 300px;
@@ -14,6 +15,7 @@ const CardWrapper = styled.div`
 
 const StyledImage = styled.img`
   margin-top: 20px;
+  padding: 0 20px;
   width: 200px;
   height: 200px;
 `;
@@ -30,22 +32,38 @@ const StyledInfoWrapper = styled.div`
   margin: 30px 0;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: #444;
+`;
+
+const StyledWrapper = styled.div`
+  margin-left: 50px;
+  justify-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+`;
+
 const StyledAvatar = styled(Avatar)``;
 
 function PhotoList({ document }) {
+  if (!document) return <div>Nie działą</div>;
+
   return (
-    <div>
+    <StyledWrapper>
       {document &&
         document.map((doc) => (
-          <CardWrapper key={doc.id}>
-            <StyledImage src={doc.photoURL} alt={doc.name} />
-            <StyledInfoWrapper>
-              <StyledAvatar url={doc.createdBy.userPhotoURL} />
-              <StyledName>Author: {doc.createdBy.displayName}</StyledName>
-            </StyledInfoWrapper>
-          </CardWrapper>
+          <StyledLink key={doc.id} to={"/details/" + doc.id}>
+            <CardWrapper key={doc.id}>
+              <StyledImage src={doc.photoURL} alt={doc.name} />
+              <StyledInfoWrapper>
+                <StyledAvatar url={doc.createdBy.userPhotoURL} />
+                <StyledName>Photo by: {doc.createdBy.displayName}</StyledName>
+              </StyledInfoWrapper>
+            </CardWrapper>
+          </StyledLink>
         ))}
-    </div>
+    </StyledWrapper>
   );
 }
 

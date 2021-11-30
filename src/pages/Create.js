@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { database, fbStorage } from "../firebase/config";
-import { addDoc, collection } from "@firebase/firestore";
+import { addDoc, collection, Timestamp } from "@firebase/firestore";
 import { getDownloadURL, uploadBytes, ref } from "@firebase/storage";
 
 const StyledWrapper = styled.div`
@@ -70,6 +71,7 @@ function Create() {
   const [photo, setPhoto] = useState(null);
   const [photoError, setPhotoError] = useState(null);
   const { user } = useAuthContext();
+  const navigate = useNavigate();
 
   const handleFileChange = (e) => {
     setPhoto(null);
@@ -117,9 +119,11 @@ function Create() {
       photoURL: getUrl,
       comments: [],
       createdBy,
+      createdDate: Timestamp.fromDate(new Date()),
     };
 
     await addDoc(photoRef, project);
+    navigate("/");
   };
 
   return (
