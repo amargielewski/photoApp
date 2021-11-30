@@ -47,6 +47,8 @@ const StyledWrapper = styled.div`
 const StyledAvatar = styled(Avatar)``;
 
 function PhotoList({ document }) {
+  if (!document) return <div>Nie działą</div>;
+
   return (
     <StyledWrapper>
       {document &&
