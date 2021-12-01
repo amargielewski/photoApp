@@ -3,7 +3,6 @@ import Avatar from "../avatar/Avatar";
 import { Link } from "react-router-dom";
 
 const CardWrapper = styled.div`
-  max-width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,8 +15,8 @@ const CardWrapper = styled.div`
 const StyledImage = styled.img`
   margin-top: 20px;
   padding: 0 20px;
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
 `;
 
 const StyledName = styled.p`
@@ -28,7 +27,17 @@ const StyledInfoWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
-  margin: 30px 0;
+  position: relative;
+  margin-top: 20px;
+
+  ::after {
+    position: absolute;
+    content: "";
+    height: 1px;
+    top: -10px;
+    width: 100%;
+    background-color: ${({ theme }) => theme.colors.secondaryFont};
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -44,8 +53,6 @@ const StyledWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-const StyledAvatar = styled(Avatar)``;
-
 function PhotoList({ document }) {
   if (!document) return <div>Waiting for documents to load</div>;
 
@@ -57,7 +64,7 @@ function PhotoList({ document }) {
             <CardWrapper key={doc.id}>
               <StyledImage src={doc.photoURL} alt={doc.name} />
               <StyledInfoWrapper>
-                <StyledAvatar url={doc.createdBy.userPhotoURL} />
+                <Avatar url={doc.createdBy.userPhotoURL} />
                 <StyledName>Photo by: {doc.createdBy.displayName}</StyledName>
               </StyledInfoWrapper>
             </CardWrapper>

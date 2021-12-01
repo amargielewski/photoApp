@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { paths } from "../../paths/paths";
 import CameraIcon from "../../assets/images/camera.svg";
 import { useAuthContext } from "../../hooks/useAuthContext";
@@ -147,6 +147,9 @@ function Sidebar() {
         <StyledLinksContainer>
           <StyledNavLink to={paths.home}>Home</StyledNavLink>
           <StyledNavLink to={paths.create}>Create</StyledNavLink>
+          {user && (
+            <StyledNavLink to={`/profile/${user.uid}`}>Profile</StyledNavLink>
+          )}
         </StyledLinksContainer>
         <LoginSignupWrapper>
           {!user ? (
