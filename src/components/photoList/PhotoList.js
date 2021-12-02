@@ -29,15 +29,6 @@ const StyledInfoWrapper = styled.div`
   justify-content: space-around;
   position: relative;
   margin-top: 20px;
-
-  ::after {
-    position: absolute;
-    content: "";
-    height: 1px;
-    top: -10px;
-    width: 100%;
-    background-color: ${({ theme }) => theme.colors.secondaryFont};
-  }
 `;
 
 const StyledLink = styled(Link)`

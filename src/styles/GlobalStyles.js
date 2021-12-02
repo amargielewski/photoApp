@@ -5,10 +5,11 @@ const GlobalStyle = createGlobalStyle`
 body {
     margin: 0;
     padding: 0;
-    background: ${({ thene }) => theme.colors.primaryBackground};
+    background: ${({ theme }) => theme.colors.primaryBackground};
     font-family: 'Roboto', sans-serif;
     padding-left: 300px;
   }
+
 
 `;
 

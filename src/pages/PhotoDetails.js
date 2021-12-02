@@ -77,6 +77,7 @@ const StyledDeleteButton = styled.button`
 
 function PhotoDetails() {
   const [data, setData] = useState(null);
+  const [newComment, setNewComment] = useState("");
   const { id: postID } = useParams();
   const { user } = useAuthContext();
   const navigate = useNavigate();
@@ -94,6 +95,17 @@ function PhotoDetails() {
     const docRef = doc(database, "photos", postID);
     await deleteDoc(docRef);
     navigate("/");
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const commentToAdd = {
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      content: newComment,
+      createdDate: Timestamp.fromDate(new Date()),
+    };
   };
 
   return (
@@ -126,6 +138,16 @@ function PhotoDetails() {
 
         <StyledImage src={data.photoURL} />
       </StyledContainer>
+      <form onSubmit={handleSubmit}>
+        <label>
+          <span>Make new comment</span>
+          <input
+            type="text"
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+          />
+        </label>
+      </form>
     </StyledWrapper>
   );
 }
