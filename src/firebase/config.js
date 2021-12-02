@@ -22,9 +22,7 @@ const auth = getAuth();
 
 const database = getFirestore();
 
-const timestamp = serverTimestamp();
-
 //init storage
 
 const fbStorage = getStorage();
-export { database, auth, fbStorage, timestamp };
+export { database, auth, fbStorage };

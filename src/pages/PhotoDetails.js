@@ -1,11 +1,20 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { doc, getDoc, deleteDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  deleteDoc,
+  Timestamp,
+  updateDoc,
+  arrayUnion,
+} from "firebase/firestore";
 import { database } from "../firebase/config";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Avatar from "../components/avatar/Avatar";
 import { useAuthContext } from "../hooks/useAuthContext";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import PhotoComment from "../components/photoComment/PhotoComment";
+
 const StyledWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -15,8 +24,8 @@ const StyledWrapper = styled.div`
 
 const StyledContainer = styled.div`
   position: relative;
-  box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  box-shadow: ${({ theme }) => theme.boxShadow.primary};
+  background-color: ${({ theme }) => theme.colors.secondaryBackground};
   padding: 50px 50px;
 `;
 
@@ -31,20 +40,21 @@ const StyledAuthorContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   position: relative;
+  margin-bottom: 20px;
 
   ::after {
     position: absolute;
     width: 100%;
-    height: 1px;
-    background-color: #f2f2f2;
+    height: 2px;
+    background-color: ${({ theme }) => theme.colors.primaryBackground};
     content: "";
     bottom: -5px;
   }
 `;
 
 const StyledAuthorName = styled.p`
-  font-size: 15px;
-  font-weight: 400;
+  font-size: ${({ theme }) => theme.fontSize.s};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
   margin-right: 15px;
 `;
 
@@ -58,8 +68,8 @@ const StyledDateContainer = styled.div`
 `;
 
 const StyledDateText = styled.p`
-  font-size: 15px;
-  font-weight: 400;
+  font-size: ${({ theme }) => theme.fontSize.s};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
 `;
 
 const StyledDeleteButton = styled.button`
@@ -67,16 +77,47 @@ const StyledDeleteButton = styled.button`
   top: 0;
   right: 0;
   border: none;
-  background-color: #a63446;
-  font-size: 15px;
-  color: white;
-  font-weight: 300;
+  background-color: ${({ theme }) => theme.colors.primary};
+  font-size: ${({ theme }) => theme.fontSize.s};
+  color: ${({ theme }) => theme.colors.secondaryFont};
+  font-weight: ${({ theme }) => theme.fontWeight.thin};
   padding: 10px;
   cursor: pointer;
+`;
+const StyledCommentContainer = styled.div`
+  margin-left: 50px;
+  position: relative;
+`;
+const StyledFormTitle = styled.span``;
+
+const StyledFormLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledTextarea = styled.textarea`
+  min-width: 250px;
+  padding: 15px;
+  margin: 10px 0;
+  font-size: ${({ theme }) => theme.fontSize.s};
+`;
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledButton = styled.button`
+  border: none;
+  padding: 10px 20px;
+  font-size: ${({ theme }) => theme.fontSize.m};
+  color: ${({ theme }) => theme.colors.secondaryFont};
+  background-color: ${({ theme }) => theme.colors.primary};
 `;
 
 function PhotoDetails() {
   const [data, setData] = useState(null);
+  const [newComment, setNewComment] = useState("");
   const { id: postID } = useParams();
   const { user } = useAuthContext();
   const navigate = useNavigate();
@@ -90,10 +131,26 @@ function PhotoDetails() {
 
   if (!data) return <div>Waiting for Data</div>;
 
+  const docRef = doc(database, "photos", postID);
   const handleDelete = async () => {
-    const docRef = doc(database, "photos", postID);
     await deleteDoc(docRef);
     navigate("/");
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const commentToAdd = {
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      content: newComment,
+      createdAt: Timestamp.fromDate(new Date()),
+      id: Math.random(),
+    };
+
+    await updateDoc(docRef, {
+      comments: arrayUnion(commentToAdd),
+    });
   };
 
   return (
@@ -126,6 +183,19 @@ function PhotoDetails() {
 
         <StyledImage src={data.photoURL} />
       </StyledContainer>
+      <StyledCommentContainer>
+        <PhotoComment id={postID} />
+        <StyledForm onSubmit={handleSubmit}>
+          <StyledFormLabel>
+            <StyledFormTitle>Make new comment:</StyledFormTitle>
+            <StyledTextarea
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+            />
+          </StyledFormLabel>
+          <StyledButton>Click me</StyledButton>
+        </StyledForm>
+      </StyledCommentContainer>
     </StyledWrapper>
   );
 }
