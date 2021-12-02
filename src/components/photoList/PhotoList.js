@@ -27,8 +27,9 @@ const StyledInfoWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   position: relative;
-  margin-top: 20px;
+  margin: 20px 0;
 `;
 
 const StyledLink = styled(Link)`

@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useCollection } from "../hooks/useCollection";
 import PhotoList from "../components/photoList/PhotoList";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { Timestamp } from "@firebase/firestore";
 
 const StyledWrapper = styled.div`
   margin-top: 50px;
@@ -21,11 +20,12 @@ const StyledUserContainer = styled.div`
     width: 100%;
     background-color: ${({ theme }) => theme.colors.secondaryFont};
     height: 1px;
-    bottom: 20px;
+    bottom: -20px;
   }
 `;
 
 const StyledPhotoContainer = styled.div`
+  margin-top: 50px;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;

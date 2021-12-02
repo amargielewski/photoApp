@@ -57,6 +57,7 @@ const StyledTitleContainer = styled.div`
   align-items: center;
 `;
 const StyledTitle = styled.h2`
+  margin: 20px 0;
   color: ${({ theme }) => theme.colors.secondaryFont};
   font-weight: bold;
   font-size: ${({ theme }) => theme.fontSize.l};

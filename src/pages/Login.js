@@ -23,6 +23,7 @@ const StyledForm = styled.form`
 `;
 
 const StyledTitle = styled.h2`
+  margin: 50px 0;
   font-size: ${({ theme }) => theme.fontSize.xl};
   font-weight: 500;
   color: #333333;

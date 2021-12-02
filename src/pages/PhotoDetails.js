@@ -1,11 +1,20 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { doc, getDoc, deleteDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  deleteDoc,
+  Timestamp,
+  updateDoc,
+  arrayUnion,
+} from "firebase/firestore";
 import { database } from "../firebase/config";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Avatar from "../components/avatar/Avatar";
 import { useAuthContext } from "../hooks/useAuthContext";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import PhotoComment from "../components/photoComment/PhotoComment";
+
 const StyledWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -31,6 +40,7 @@ const StyledAuthorContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   position: relative;
+  margin-bottom: 20px;
 
   ::after {
     position: absolute;
@@ -74,6 +84,36 @@ const StyledDeleteButton = styled.button`
   padding: 10px;
   cursor: pointer;
 `;
+const StyledCommentContainer = styled.div`
+  margin-left: 50px;
+  position: relative;
+`;
+const StyledFormTitle = styled.span``;
+
+const StyledFormLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledTextarea = styled.textarea`
+  min-width: 250px;
+  padding: 15px;
+  margin: 10px 0;
+  font-size: ${({ theme }) => theme.fontSize.s};
+`;
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledButton = styled.button`
+  border: none;
+  padding: 10px 20px;
+  font-size: ${({ theme }) => theme.fontSize.m};
+  color: ${({ theme }) => theme.colors.secondaryFont};
+  background-color: ${({ theme }) => theme.colors.primary};
+`;
 
 function PhotoDetails() {
   const [data, setData] = useState(null);
@@ -91,8 +131,8 @@ function PhotoDetails() {
 
   if (!data) return <div>Waiting for Data</div>;
 
+  const docRef = doc(database, "photos", postID);
   const handleDelete = async () => {
-    const docRef = doc(database, "photos", postID);
     await deleteDoc(docRef);
     navigate("/");
   };
@@ -104,8 +144,13 @@ function PhotoDetails() {
       displayName: user.displayName,
       photoURL: user.photoURL,
       content: newComment,
-      createdDate: Timestamp.fromDate(new Date()),
+      createdAt: Timestamp.fromDate(new Date()),
+      id: Math.random(),
     };
+
+    await updateDoc(docRef, {
+      comments: arrayUnion(commentToAdd),
+    });
   };
 
   return (
@@ -138,16 +183,19 @@ function PhotoDetails() {
 
         <StyledImage src={data.photoURL} />
       </StyledContainer>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <span>Make new comment</span>
-          <input
-            type="text"
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-          />
-        </label>
-      </form>
+      <StyledCommentContainer>
+        <PhotoComment id={postID} />
+        <StyledForm onSubmit={handleSubmit}>
+          <StyledFormLabel>
+            <StyledFormTitle>Make new comment:</StyledFormTitle>
+            <StyledTextarea
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+            />
+          </StyledFormLabel>
+          <StyledButton>Click me</StyledButton>
+        </StyledForm>
+      </StyledCommentContainer>
     </StyledWrapper>
   );
 }

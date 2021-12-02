@@ -25,6 +25,7 @@ const StyledForm = styled.form`
 `;
 
 const StyledTitle = styled.h2`
+  margin: 20px 0;
   font-size: ${({ theme }) => theme.fontSize.xl};
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   color: ${({ theme }) => theme.colors.primaryFont};
