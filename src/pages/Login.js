@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
 import useLogin from "../hooks/useLogin";
-import { useNavigate } from "react-router";
 
 const StyledWrapper = styled.div`
   height: 100vh;
@@ -61,13 +60,10 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, isPending, error } = useLogin();
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(email, password);
-
-    navigate("/");
   };
 
   return (
@@ -92,7 +88,11 @@ function Login() {
             required
           />
         </StyledLabel>
-        <StyledButton>login</StyledButton>
+        {!isPending ? (
+          <StyledButton>Login</StyledButton>
+        ) : (
+          <StyledButton>Loading...</StyledButton>
+        )}
         {error && <p>{error}</p>}
       </StyledForm>
     </StyledWrapper>
