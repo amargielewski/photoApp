@@ -151,6 +151,8 @@ function PhotoDetails() {
     await updateDoc(docRef, {
       comments: arrayUnion(commentToAdd),
     });
+
+    setNewComment("");
   };
 
   return (
@@ -193,7 +195,7 @@ function PhotoDetails() {
               onChange={(e) => setNewComment(e.target.value)}
             />
           </StyledFormLabel>
-          <StyledButton>Click me</StyledButton>
+          <StyledButton>Add Comment</StyledButton>
         </StyledForm>
       </StyledCommentContainer>
     </StyledWrapper>

@@ -1,6 +1,6 @@
 import GlobalStyle from "./styles/GlobalStyles";
 import styled, { ThemeProvider } from "styled-components";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { paths } from "./paths/paths";
 import { theme } from "./styles/mainTheme";
 
@@ -12,6 +12,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import PhotoDetails from "./pages/PhotoDetails";
 import UserProfile from "./pages/UserProfile";
+import { useAuthContext } from "./hooks/useAuthContext";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -23,6 +24,7 @@ const StyledContainer = styled.div`
 `;
 
 function App() {
+  const { user } = useAuthContext();
   return (
     <ThemeProvider theme={theme}>
       <StyledWrapper className="App">
@@ -31,12 +33,42 @@ function App() {
           <Sidebar />
           <StyledContainer>
             <Routes>
-              <Route path={paths.home} element={<Home />} />
-              <Route path={paths.create} element={<Create />} />
-              <Route path={paths.signup} element={<Signup />} />
-              <Route path={paths.login} element={<Login />} />
-              <Route path={paths.photoDetailsId} element={<PhotoDetails />} />
-              <Route path={paths.userProfile} element={<UserProfile />} />
+              <Route
+                path={paths.home}
+                element={user ? <Home /> : <Navigate to={paths.login} />}
+              />
+              <Route
+                path={paths.create}
+                element={user ? <Create /> : <Navigate to={paths.login} />}
+              />
+              <Route
+                path={paths.signup}
+                element={!user ? <Signup /> : <Navigate to={paths.home} />}
+              />
+              <Route
+                path={paths.login}
+                element={!user ? <Login /> : <Navigate to={paths.home} />}
+              />
+              <Route
+                path={paths.photoDetailsId}
+                element={
+                  user ? <PhotoDetails /> : <Navigate to={paths.login} />
+                }
+              />
+              <Route
+                path={paths.userProfile}
+                element={user ? <UserProfile /> : <Navigate to={paths.login} />}
+              />
+              <Route
+                path="/*"
+                element={
+                  user ? (
+                    <Navigate to={paths.home} />
+                  ) : (
+                    <Navigate to={paths.login} />
+                  )
+                }
+              />
             </Routes>
           </StyledContainer>
         </BrowserRouter>

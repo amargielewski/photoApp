@@ -145,13 +145,15 @@ function Sidebar() {
             </StyledUserContainer>
           )}
         </StyledTitleContainer>
-        <StyledLinksContainer>
-          <StyledNavLink to={paths.home}>Home</StyledNavLink>
-          <StyledNavLink to={paths.create}>Create</StyledNavLink>
-          {user && (
+        {user && (
+          <StyledLinksContainer>
+            <StyledNavLink to={paths.home}>Home</StyledNavLink>
+            <StyledNavLink to={paths.create}>Create</StyledNavLink>
+
             <StyledNavLink to={`/profile/${user.uid}`}>Profile</StyledNavLink>
-          )}
-        </StyledLinksContainer>
+          </StyledLinksContainer>
+        )}
+
         <LoginSignupWrapper>
           {!user ? (
             <>
