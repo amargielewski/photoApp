@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledAvatar = styled.img`
@@ -6,11 +7,13 @@ const StyledAvatar = styled.img`
   border-radius: 50%;
 `;
 
-function Avatar({ url }) {
+const StyledLink = styled(Link)``;
+
+function Avatar({ src, userID }) {
   return (
-    <div>
-      <StyledAvatar src={url} />
-    </div>
+    <StyledLink to={`/profile/${userID}`}>
+      <StyledAvatar src={src} />
+    </StyledLink>
   );
 }
 

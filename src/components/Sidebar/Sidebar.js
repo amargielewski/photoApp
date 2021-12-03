@@ -141,7 +141,7 @@ function Sidebar() {
           {user && (
             <StyledUserContainer>
               <StyledUsername>Hi {user.displayName}</StyledUsername>
-              <Avatar url={user.photoURL} />
+              <Avatar src={user.photoURL} userID={user.uid} />
             </StyledUserContainer>
           )}
         </StyledTitleContainer>

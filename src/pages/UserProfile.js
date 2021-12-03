@@ -49,6 +49,7 @@ function UserProfile() {
   const { user } = useAuthContext();
 
   const { documents } = useCollection("photos", ["createdBy.id", "==", id]);
+  const { userDoc } = useCollection("users", ["uid", "==", id]);
   console.log(documents);
   return (
     <StyledWrapper>

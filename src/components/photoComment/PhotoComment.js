@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Avatar from "../avatar/Avatar";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const StyledWrapper = styled.div``;
 const StyledName = styled.p`
@@ -56,6 +57,7 @@ const StyledDeleteButton = styled.div`
 
 function PhotoComment({ id }) {
   const [data, setData] = useState(null);
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const docRef = doc(database, "photos", id);
@@ -77,11 +79,14 @@ function PhotoComment({ id }) {
       <StyledCommentList>
         {data.comments.map((com) => (
           <StyledSingleCommentContainer key={com.id}>
-            <StyledDeleteButton onClick={() => handleDelete(com)}>
-              X
-            </StyledDeleteButton>
+            {user.uid === com.uid && (
+              <StyledDeleteButton onClick={() => handleDelete(com)}>
+                X
+              </StyledDeleteButton>
+            )}
+
             <StyledUserContainer>
-              <Avatar url={com.photoURL} />
+              <Avatar userID={com.uid} src={com.photoURL} />
               <StyledName>{com.displayName}</StyledName>
             </StyledUserContainer>
             <StyledDateText>
