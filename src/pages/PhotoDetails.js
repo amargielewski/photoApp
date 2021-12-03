@@ -31,8 +31,8 @@ const StyledContainer = styled.div`
 
 const StyledImage = styled.img`
   width: 100%;
-  max-width: 800px;
-  min-width: 500px;
+  max-width: 1000px;
+  min-width: 600px;
 `;
 
 const StyledAuthorContainer = styled.div`
@@ -143,6 +143,7 @@ function PhotoDetails() {
     const commentToAdd = {
       displayName: user.displayName,
       photoURL: user.photoURL,
+      uid: user.uid,
       content: newComment,
       createdAt: Timestamp.fromDate(new Date()),
       id: Math.random(),
@@ -169,7 +170,10 @@ function PhotoDetails() {
               Created by: {data.createdBy.displayName}
             </StyledAuthorName>
 
-            <Avatar url={data.createdBy.userPhotoURL} />
+            <Avatar
+              userID={data.createdBy.id}
+              src={data.createdBy.userPhotoURL}
+            />
           </StyledAvatarContainer>
           <StyledDateContainer>
             <StyledDateText>

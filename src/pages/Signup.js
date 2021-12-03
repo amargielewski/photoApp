@@ -63,7 +63,6 @@ function Signup() {
   const [avatar, setAvatar] = useState(null);
   const [avatarError, setAvatarError] = useState(null);
   const { signup, isPending, error } = useSignup();
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,7 +70,6 @@ function Signup() {
     await signup(email, password, name, avatar);
 
     resetForm();
-    navigate("/");
   };
 
   const handleFileChange = (e) => {

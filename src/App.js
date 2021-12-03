@@ -59,6 +59,7 @@ function App() {
                 path={paths.userProfile}
                 element={user ? <UserProfile /> : <Navigate to={paths.login} />}
               />
+
               <Route
                 path="/*"
                 element={

@@ -56,7 +56,10 @@ function PhotoList({ document }) {
             <CardWrapper key={doc.id}>
               <StyledImage src={doc.photoURL} alt={doc.name} />
               <StyledInfoWrapper>
-                <Avatar url={doc.createdBy.userPhotoURL} />
+                <Avatar
+                  userID={doc.createdBy.id}
+                  src={doc.createdBy.userPhotoURL}
+                />
                 <StyledName>Photo by: {doc.createdBy.displayName}</StyledName>
               </StyledInfoWrapper>
             </CardWrapper>

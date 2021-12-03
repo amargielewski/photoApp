@@ -56,6 +56,7 @@ export const useSignup = () => {
       await addDoc(userRef, {
         displayName: name,
         photoURL: getUrl,
+        uid: res.user.uid,
       });
 
       //dispatch login action
