@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useCollection } from "../hooks/useCollection";
 import PhotoList from "../components/photoList/PhotoList";
-import { useAuthContext } from "../hooks/useAuthContext";
 
 const StyledWrapper = styled.div`
   margin-top: 50px;
@@ -17,10 +16,12 @@ const StyledUserContainer = styled.div`
   ::after {
     position: absolute;
     content: "";
-    width: 100%;
+    width: 80%;
     background-color: ${({ theme }) => theme.colors.secondaryFont};
     height: 1px;
     bottom: -20px;
+    transform: translateX(-50%);
+    left: 50%;
   }
 `;
 
@@ -44,22 +45,36 @@ const StyledUsername = styled.p`
   color: ${({ theme }) => theme.colors.primaryFont};
 `;
 
+const StyledInfo = styled.p`
+  margin-top: 50px;
+  width: 100%;
+  text-align: center;
+  font-weight: ${({ theme }) => theme.fontWeight.light};
+  font-size: ${({ theme }) => theme.fontSize.l};
+`;
+
 function UserProfile() {
-  const { id } = useParams();
-  const { user } = useAuthContext();
+  let { id } = useParams();
 
   const { documents } = useCollection("photos", ["createdBy.id", "==", id]);
-  const { userDoc } = useCollection("users", ["uid", "==", id]);
+  const { documents: userDoc } = useCollection("users", ["uid", "==", id]);
+
+  if (!userDoc) return <div>Loading</div>;
   console.log(documents);
+  const { displayName, photoURL, uid } = userDoc[0];
+
   return (
     <StyledWrapper>
-      {user && (
+      {userDoc && (
         <StyledUserContainer>
-          <StyledUserAvatar src={user.photoURL} alt={user.uid} />
-          <StyledUsername>{user.displayName}</StyledUsername>
+          <StyledUserAvatar src={photoURL} alt={uid} />
+          <StyledUsername>{displayName}</StyledUsername>
         </StyledUserContainer>
       )}
       <StyledPhotoContainer>
+        {documents.length < 1 && (
+          <StyledInfo>This user has no photos to load : (</StyledInfo>
+        )}
         <PhotoList document={documents} />
       </StyledPhotoContainer>
     </StyledWrapper>
