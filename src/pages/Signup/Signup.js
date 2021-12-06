@@ -1,60 +1,17 @@
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useSignup } from "../hooks/useSignup";
-const StyledWrapper = styled.div`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
+import { useSignup } from "../../hooks/useSignup";
 
-const StyledForm = styled.form`
-  width: 700px;
-  height: 500px;
-  box-shadow: ${({ theme }) => theme.boxShadow.primary};
-  display: flex;
-  flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.secondaryBackground};
-  border-radius: ${({ theme }) => theme.borderRadius.primary};
-  align-items: center;
-`;
+//Styles
 
-const StyledTitle = styled.h2`
-  margin: 30px 0;
-  font-size: ${({ theme }) => theme.fontSize.xl};
-  font-weight: ${({ theme }) => theme.fontWeight.medium};
-  color: ${({ theme }) => theme.colors.primaryFont};
-`;
-
-const StyledInputTitle = styled.span`
-  font-size: ${({ theme }) => theme.fontSize.m};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
-`;
-
-const StyledInput = styled.input`
-  width: 400px;
-  font-size: ${({ theme }) => theme.fontSize.m};
-  padding: 5px 5px;
-  display: block;
-`;
-
-const StyledLabel = styled.label`
-  margin-bottom: 15px;
-`;
-
-const StyledButton = styled.button`
-  margin-top: 20px;
-  text-transform: uppercase;
-  border: none;
-  font-size: ${({ theme }) => theme.fontSize.m};
-  padding: 10px 20px;
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.secondaryFont};
-  cursor: pointer;
-  border-radius: ${({ theme }) => theme.borderRadius.primary};
-`;
+import {
+  StyledForm,
+  StyledWrapper,
+  StyledTitle,
+  StyledInputTitle,
+  StyledInput,
+  StyledLabel,
+  StyledButton,
+} from "./SignupStyle";
 
 function Signup() {
   const [email, setEmail] = useState("");

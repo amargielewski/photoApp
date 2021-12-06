@@ -7,113 +7,33 @@ import {
   updateDoc,
   arrayUnion,
 } from "firebase/firestore";
-import { database } from "../firebase/config";
+import { database } from "../../firebase/config";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
-import Avatar from "../components/avatar/Avatar";
-import { useAuthContext } from "../hooks/useAuthContext";
+import Avatar from "../../components/avatar/Avatar";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
-import PhotoComment from "../components/photoComment/PhotoComment";
+import PhotoComment from "../../components/photoComment/PhotoComment";
 
-const StyledWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`;
-
-const StyledContainer = styled.div`
-  position: relative;
-  box-shadow: ${({ theme }) => theme.boxShadow.primary};
-  background-color: ${({ theme }) => theme.colors.secondaryBackground};
-  padding: 50px 50px;
-`;
-
-const StyledImage = styled.img`
-  width: 100%;
-  max-width: 1000px;
-  min-width: 600px;
-`;
-
-const StyledAuthorContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  margin-bottom: 20px;
-
-  ::after {
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background-color: ${({ theme }) => theme.colors.primaryBackground};
-    content: "";
-    bottom: -5px;
-  }
-`;
-
-const StyledAuthorName = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.s};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
-  margin-right: 15px;
-`;
-
-const StyledAvatarContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const StyledDateContainer = styled.div`
-  display: flex;
-`;
-
-const StyledDateText = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.s};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
-`;
-
-const StyledDeleteButton = styled.button`
-  position: absolute;
-  top: 0;
-  right: 0;
-  border: none;
-  background-color: ${({ theme }) => theme.colors.primary};
-  font-size: ${({ theme }) => theme.fontSize.s};
-  color: ${({ theme }) => theme.colors.secondaryFont};
-  font-weight: ${({ theme }) => theme.fontWeight.thin};
-  padding: 10px;
-  cursor: pointer;
-`;
-const StyledCommentContainer = styled.div`
-  margin-left: 50px;
-  position: relative;
-`;
-const StyledFormTitle = styled.span``;
-
-const StyledFormLabel = styled.label`
-  display: flex;
-  flex-direction: column;
-`;
-
-const StyledTextarea = styled.textarea`
-  min-width: 250px;
-  padding: 15px;
-  margin: 10px 0;
-  font-size: ${({ theme }) => theme.fontSize.s};
-`;
-
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-`;
-
-const StyledButton = styled.button`
-  border: none;
-  padding: 10px 20px;
-  font-size: ${({ theme }) => theme.fontSize.m};
-  color: ${({ theme }) => theme.colors.secondaryFont};
-  background-color: ${({ theme }) => theme.colors.primary};
-`;
+//Styles
+import {
+  StyledPhotoTitle,
+  StyledPhotoDescription,
+  StyledButton,
+  StyledForm,
+  StyledTextarea,
+  StyledFormLabel,
+  StyledFormTitle,
+  StyledCommentContainer,
+  StyledWrapper,
+  StyledContainer,
+  StyledAuthorContainer,
+  StyledImage,
+  StyledAuthorName,
+  StyledDateText,
+  StyledDeleteButton,
+  StyledAvatarContainer,
+  StyledDateContainer,
+} from "./PhotoDetailsStyle";
 
 function PhotoDetails() {
   const [data, setData] = useState(null);
@@ -184,8 +104,10 @@ function PhotoDetails() {
             </StyledDateText>
           </StyledDateContainer>
         </StyledAuthorContainer>
-        <h2>Photo Name: {data.name}</h2>
-        <p>Photo Description: {data.description}</p>
+        <StyledPhotoTitle>Photo Name: {data.name}</StyledPhotoTitle>
+        <StyledPhotoDescription>
+          Photo Description: {data.description}
+        </StyledPhotoDescription>
 
         <StyledImage src={data.photoURL} />
       </StyledContainer>
