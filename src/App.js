@@ -6,12 +6,12 @@ import { theme } from "./styles/mainTheme";
 
 //pages && components
 import Sidebar from "./components/Sidebar/Sidebar";
-import Home from "./pages/Home";
-import Create from "./pages/Create";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
-import PhotoDetails from "./pages/PhotoDetails";
-import UserProfile from "./pages/UserProfile";
+import Home from "./pages/Home/Home";
+import Create from "./pages/Create/Create";
+import Signup from "./pages/Signup/Signup";
+import Login from "./pages/Login/Login";
+import PhotoDetails from "./pages/PhotoDetails/PhotoDetails";
+import UserProfile from "./pages/UserProfile/UserProfile";
 import { useAuthContext } from "./hooks/useAuthContext";
 
 const StyledWrapper = styled.div`

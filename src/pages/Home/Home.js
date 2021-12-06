@@ -1,5 +1,5 @@
-import PhotoList from "../components/photoList/PhotoList";
-import { useCollection } from "../hooks/useCollection";
+import PhotoList from "../../components/photoList/PhotoList";
+import { useCollection } from "../../hooks/useCollection";
 import styled from "styled-components";
 
 const StyledWrapper = styled.div``;
