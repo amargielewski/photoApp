@@ -7,7 +7,6 @@ const CardWrapper = styled.div`
   align-items: center;
   background-color: #fff;
   box-shadow: ${({ theme }) => theme.boxShadow.primary};
-  cursor: pointer;
   margin: 20px;
 `;
 
@@ -17,6 +16,8 @@ const StyledImage = styled.img`
   width: 250px;
   height: 250px;
 `;
+
+const StyledLink = styled(Link)``;
 
 const StyledName = styled.p`
   font-size: ${({ theme }) => theme.fontSize.m};
@@ -31,8 +32,7 @@ const StyledInfoWrapper = styled.div`
   margin: 20px 0;
 `;
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
+const StyledContainer = styled.div`
   color: ${({ theme }) => theme.colors.primaryFont};
   font-weight: ${({ theme }) => theme.fontWeight.light};
 `;
@@ -47,9 +47,10 @@ const StyledWrapper = styled.div`
 
 export {
   StyledWrapper,
-  StyledLink,
+  StyledContainer,
   StyledName,
   StyledImage,
   CardWrapper,
   StyledInfoWrapper,
+  StyledLink,
 };

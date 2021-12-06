@@ -20,7 +20,6 @@ function UserProfile() {
   const { documents: userDoc } = useCollection("users", ["uid", "==", id]);
 
   if (!userDoc) return <div>Loading</div>;
-  console.log(documents);
   const { displayName, photoURL, uid } = userDoc[0];
 
   return (

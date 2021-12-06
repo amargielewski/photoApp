@@ -43,10 +43,13 @@ function PhotoDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const controller = new AbortController();
     const docRef = doc(database, "photos", postID);
-    const docSnap = getDoc(docRef).then((doc) => {
+    getDoc(docRef).then((doc) => {
       setData(doc.data());
     });
+
+    return () => controller.abort();
   }, [postID]);
 
   if (!data) return <div>Waiting for Data</div>;
