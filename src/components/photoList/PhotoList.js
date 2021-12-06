@@ -1,12 +1,12 @@
-import styled from "styled-components";
 import Avatar from "../avatar/Avatar";
 import {
   StyledWrapper,
-  StyledLink,
+  StyledContainer,
   StyledName,
   StyledImage,
   CardWrapper,
   StyledInfoWrapper,
+  StyledLink,
 } from "./PhotoListStyle";
 
 function PhotoList({ document }) {
@@ -16,9 +16,11 @@ function PhotoList({ document }) {
     <StyledWrapper>
       {document &&
         document.map((doc) => (
-          <StyledLink key={doc.id} to={"/details/" + doc.id}>
+          <StyledContainer key={doc.id}>
             <CardWrapper key={doc.id}>
-              <StyledImage src={doc.photoURL} alt={doc.name} />
+              <StyledLink to={`/details/${doc.id}`}>
+                <StyledImage src={doc.photoURL} alt={doc.name} />
+              </StyledLink>
               <StyledInfoWrapper>
                 <Avatar
                   userID={doc.createdBy.id}
@@ -27,7 +29,7 @@ function PhotoList({ document }) {
                 <StyledName>Photo by: {doc.createdBy.displayName}</StyledName>
               </StyledInfoWrapper>
             </CardWrapper>
-          </StyledLink>
+          </StyledContainer>
         ))}
     </StyledWrapper>
   );

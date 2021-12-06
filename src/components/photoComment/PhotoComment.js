@@ -21,10 +21,13 @@ function PhotoComment({ id }) {
   const { user } = useAuthContext();
 
   useEffect(() => {
+    const controller = new AbortController();
     const docRef = doc(database, "photos", id);
-    const unsub = onSnapshot(docRef, (doc) => {
+    onSnapshot(docRef, (doc) => {
       setData(doc.data());
     });
+
+    return () => controller.abort();
   }, [id]);
 
   const handleDelete = async (com) => {
