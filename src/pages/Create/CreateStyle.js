@@ -16,6 +16,14 @@ const StyledForm = styled.form`
   background-color: white;
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   align-items: center;
+
+  @media (max-width: 1100px) {
+    width: 600px;
+  }
+
+  @media (max-width: 950px) {
+    width: 400px;
+  } ;
 `;
 
 const StyledTitle = styled.h2`
@@ -35,6 +43,10 @@ const StyledInput = styled.input`
   font-size: ${({ theme }) => theme.fontSize.m};
   padding: 5px 5px;
   display: block;
+
+  @media (max-width: 950px) {
+    width: 250px;
+  } ;
 `;
 
 const StyledLabel = styled.label`
@@ -58,6 +70,10 @@ const StyledTextarea = styled.textarea`
   min-width: 400px;
   height: 150px;
   font-size: 20px;
+
+  @media (max-width: 950px) {
+    min-width: 250px;
+  } ;
 `;
 
 export {

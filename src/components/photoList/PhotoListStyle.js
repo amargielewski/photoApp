@@ -15,6 +15,16 @@ const StyledImage = styled.img`
   padding: 0 20px;
   width: 250px;
   height: 250px;
+
+  @media (max-width: 1000px) {
+    width: 300px;
+    height: 300px;
+  }
+
+  @media (max-width: 750px) {
+    width: 200px;
+    height: 200px;
+  }
 `;
 
 const StyledLink = styled(Link)``;
@@ -43,6 +53,14 @@ const StyledWrapper = styled.div`
   justify-content: flex-start;
   display: flex;
   flex-wrap: wrap;
+
+  @media (max-width: 1100px) {
+    margin-left: 10px;
+  }
+
+  @media (max-width: 1000px) {
+    justify-content: center;
+  }
 `;
 
 export {

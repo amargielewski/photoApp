@@ -51,6 +51,11 @@ body {
     background: ${({ theme }) => theme.colors.primaryBackground};
     font-family: 'Roboto', sans-serif;
     padding-left: 300px;
+
+	@media (max-width: 750px) {
+    
+		padding-left: 250px;
+  }
   }
 
 `;
