@@ -11,7 +11,7 @@ const StyledContainer = styled.div`
   left: 0;
 
   @media (max-width: 750px) {
-    min-width: 250px;
+    min-width: 200px;
   }
 `;
 const StyledWrapper = styled.div`
@@ -98,7 +98,7 @@ const StyledUserContainer = styled.div`
     bottom: -10px;
 
     @media (max-width: 750px) {
-      width: 250px;
+      width: 200px;
     }
   }
 `;

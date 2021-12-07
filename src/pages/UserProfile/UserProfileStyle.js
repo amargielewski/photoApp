@@ -23,7 +23,6 @@ const StyledUserContainer = styled.div`
 `;
 
 const StyledPhotoContainer = styled.div`
-  margin-top: 50px;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
