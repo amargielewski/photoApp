@@ -9,6 +9,11 @@ const StyledContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  transition: 0.3s;
+
+  @media (max-width: 750px) {
+    min-width: 200px;
+  }
 `;
 const StyledWrapper = styled.div`
   height: inherit;
@@ -92,6 +97,10 @@ const StyledUserContainer = styled.div`
     height: 1px;
     background-color: ${({ theme }) => theme.colors.secondaryFont};
     bottom: -10px;
+
+    @media (max-width: 750px) {
+      width: 200px;
+    }
   }
 `;
 

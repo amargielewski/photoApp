@@ -17,6 +17,14 @@ const StyledForm = styled.form`
   background-color: ${({ theme }) => theme.colors.secondaryBackground};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   align-items: center;
+
+  @media (max-width: 1100px) {
+    width: 500px;
+  }
+
+  @media (max-width: 950px) {
+    width: 400px;
+  } ;
 `;
 
 const StyledTitle = styled.h2`
@@ -36,6 +44,10 @@ const StyledInput = styled.input`
   font-size: ${({ theme }) => theme.fontSize.m};
   padding: 5px 5px;
   display: block;
+
+  @media (max-width: 1100px) {
+    width: 300px;
+  }
 `;
 
 const StyledLabel = styled.label`

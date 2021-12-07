@@ -3,7 +3,14 @@ const StyledWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   height: 100vh;
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    height: 100%;
+    margin: 20px 0;
+  }
 `;
 
 const StyledContainer = styled.div`
@@ -12,6 +19,11 @@ const StyledContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.secondaryBackground};
   color: ${({ theme }) => theme.colors.primaryFont};
   padding: 50px 50px;
+  margin-left: 20px;
+
+  @media (max-width: 1200px) {
+    margin: 20px;
+  }
 `;
 
 const StyledImage = styled.img`
@@ -49,7 +61,7 @@ const StyledAvatarContainer = styled.div`
 `;
 
 const StyledDateContainer = styled.div`
-  display: flex;
+  margin-left: 10px;
 `;
 
 const StyledDateText = styled.p`
@@ -71,7 +83,11 @@ const StyledDeleteButton = styled.button`
 `;
 const StyledCommentContainer = styled.div`
   margin-left: 50px;
+  margin-right: 20px;
   position: relative;
+  @media (max-width: 1200px) {
+    align-self: center;
+  }
 `;
 const StyledFormTitle = styled.span``;
 
