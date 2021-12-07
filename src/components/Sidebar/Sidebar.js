@@ -15,6 +15,7 @@ import {
   StyledUserContainer,
   StyledLinksContainer,
   StyledUsername,
+  StyledNavWrapper,
 } from "./SidebarStyle";
 
 function Sidebar() {
@@ -34,25 +35,27 @@ function Sidebar() {
             </StyledUserContainer>
           )}
         </StyledTitleContainer>
-        {user && (
-          <StyledLinksContainer>
-            <StyledNavLink to={paths.home}>Home</StyledNavLink>
-            <StyledNavLink to={paths.create}>Create</StyledNavLink>
+        <StyledNavWrapper>
+          {user && (
+            <StyledLinksContainer>
+              <StyledNavLink to={paths.home}>Home</StyledNavLink>
+              <StyledNavLink to={paths.create}>Create</StyledNavLink>
 
-            <StyledNavLink to={`/profile/${user.uid}`}>Profile</StyledNavLink>
-          </StyledLinksContainer>
-        )}
-
-        <LoginSignupWrapper>
-          {!user ? (
-            <>
-              <StyledNavLink to={paths.login}>Login</StyledNavLink>
-              <StyledNavLink to={paths.signup}>Signup</StyledNavLink>
-            </>
-          ) : (
-            <StyledLogoutButton onClick={logout}>logout</StyledLogoutButton>
+              <StyledNavLink to={`/profile/${user.uid}`}>Profile</StyledNavLink>
+            </StyledLinksContainer>
           )}
-        </LoginSignupWrapper>
+
+          <LoginSignupWrapper>
+            {!user ? (
+              <>
+                <StyledNavLink to={paths.login}>Login</StyledNavLink>
+                <StyledNavLink to={paths.signup}>Signup</StyledNavLink>
+              </>
+            ) : (
+              <StyledLogoutButton onClick={logout}>logout</StyledLogoutButton>
+            )}
+          </LoginSignupWrapper>
+        </StyledNavWrapper>
       </StyledWrapper>
     </StyledContainer>
   );

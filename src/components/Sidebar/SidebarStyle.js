@@ -9,13 +9,16 @@ const StyledContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 10;
 
   @media (max-width: 750px) {
-    min-width: 200px;
+    width: 100%;
+    height: 60px;
+    min-height: auto;
   }
 `;
 const StyledWrapper = styled.div`
-  height: inherit;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -41,6 +44,10 @@ const LoginSignupWrapper = styled.div`
 
 const StyledImage = styled.img`
   width: 80px;
+
+  @media (max-width: 750px) {
+    width: 30px;
+  }
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -54,6 +61,12 @@ const StyledTitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 750px) {
+    flex-direction: row;
+    justify-content: center;
+    height: 100%;
+  }
 `;
 const StyledTitle = styled.h2`
   margin: 20px 0;
@@ -61,6 +74,11 @@ const StyledTitle = styled.h2`
   font-weight: bold;
   font-size: ${({ theme }) => theme.fontSize.l};
   letter-spacing: 3px;
+
+  @media (max-width: 750px) {
+    margin: 0;
+    display: none;
+  }
 `;
 
 const StyledLogoutButton = styled.button`
@@ -101,6 +119,10 @@ const StyledUserContainer = styled.div`
       width: 200px;
     }
   }
+
+  @media (max-width: 750px) {
+    margin-top: 0;
+  }
 `;
 
 const StyledLinksContainer = styled.div`
@@ -122,6 +144,10 @@ const StyledLinksContainer = styled.div`
     color: ${({ theme }) => theme.colors.primary};
     background-color: ${({ theme }) => theme.colors.primaryBackground};
   }
+
+  @media (max-width: 750px) {
+    margin-top: 0;
+  }
 `;
 
 const StyledUsername = styled.p`
@@ -129,6 +155,23 @@ const StyledUsername = styled.p`
   color: ${({ theme }) => theme.colors.secondaryFont};
   margin-right: 20px;
   font-weight: ${({ theme }) => theme.fontWeight.normal};
+`;
+
+const StyledNavWrapper = styled.div`
+  flex: 1;
+  display: flex;
+  align-self: stretch;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  @media (max-width: 750px) {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background-color: #fff;
+  }
 `;
 
 export {
@@ -143,4 +186,5 @@ export {
   StyledUserContainer,
   StyledLinksContainer,
   StyledUsername,
+  StyledNavWrapper,
 };
