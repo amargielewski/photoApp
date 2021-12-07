@@ -1,6 +1,7 @@
 import PhotoList from "../../components/photoList/PhotoList";
 import { useCollection } from "../../hooks/useCollection";
 import { useEffect, useState } from "react";
+import arrowUp from "../../assets/images/arrowUp.svg";
 
 import {
   StyledInput,
@@ -9,7 +10,7 @@ import {
   StyledWrapper,
   StyledInfoBox,
   StyledScrollButton,
-  StyledScrollButtonText,
+  StyledScrollImage,
 } from "./HomeStyle";
 
 function Home() {
@@ -70,7 +71,7 @@ function Home() {
       )}
       {isVisible && (
         <StyledScrollButton onClick={scrollToTop}>
-          <StyledScrollButtonText>Scroll Up!</StyledScrollButtonText>
+          <StyledScrollImage src={arrowUp} />
         </StyledScrollButton>
       )}
     </StyledWrapper>

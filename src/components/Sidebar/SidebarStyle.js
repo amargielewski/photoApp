@@ -9,6 +9,7 @@ const StyledContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  transition: 0.3s;
 
   @media (max-width: 750px) {
     min-width: 200px;

@@ -38,7 +38,7 @@ const StyledScrollButton = styled.div`
   position: fixed;
   right: 20px;
   bottom: 20px;
-  padding: 20px 40px;
+  padding: 10px;
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   display: flex;
@@ -46,10 +46,9 @@ const StyledScrollButton = styled.div`
   align-items: center;
 `;
 
-const StyledScrollButtonText = styled.p`
-  color: ${({ theme }) => theme.colors.secondaryFont};
-  font-size: ${({ theme }) => theme.fontSize.m};
-  font-weight: ${({ theme }) => theme.fontWeight.medium};
+const StyledScrollImage = styled.img`
+  width: 50px;
+  height: 50px;
 `;
 
 export {
@@ -59,5 +58,5 @@ export {
   StyledInputText,
   StyledWrapper,
   StyledScrollButton,
-  StyledScrollButtonText,
+  StyledScrollImage,
 };
