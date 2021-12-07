@@ -3,7 +3,6 @@ import CameraIcon from "../../assets/images/camera.svg";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useLogout } from "../../hooks/useLogout";
 import Avatar from "../avatar/Avatar";
-import { useState } from "react";
 import {
   StyledContainer,
   StyledWrapper,
