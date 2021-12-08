@@ -46,7 +46,8 @@ const StyledImage = styled.img`
   width: 80px;
 
   @media (max-width: 750px) {
-    width: 30px;
+    margin-left: 40px;
+    width: 50px;
   }
 `;
 
@@ -64,7 +65,7 @@ const StyledTitleContainer = styled.div`
 
   @media (max-width: 750px) {
     flex-direction: row;
-    justify-content: center;
+    width: 100%;
     height: 100%;
   }
 `;
@@ -114,10 +115,6 @@ const StyledUserContainer = styled.div`
     height: 1px;
     background-color: ${({ theme }) => theme.colors.secondaryFont};
     bottom: -10px;
-
-    @media (max-width: 750px) {
-      width: 200px;
-    }
   }
 
   @media (max-width: 750px) {
@@ -155,6 +152,10 @@ const StyledUsername = styled.p`
   color: ${({ theme }) => theme.colors.secondaryFont};
   margin-right: 20px;
   font-weight: ${({ theme }) => theme.fontWeight.normal};
+
+  @media (max-width: 750px) {
+    display: none;
+  }
 `;
 
 const StyledNavWrapper = styled.div`
