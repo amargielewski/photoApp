@@ -3,6 +3,7 @@ import CameraIcon from "../../assets/images/camera.svg";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useLogout } from "../../hooks/useLogout";
 import Avatar from "../avatar/Avatar";
+import { useState } from "react";
 import {
   StyledContainer,
   StyledWrapper,
@@ -16,11 +17,19 @@ import {
   StyledLinksContainer,
   StyledUsername,
   StyledNavWrapper,
+  StyledMenu,
 } from "./SidebarStyle";
 
 function Sidebar() {
   const { user } = useAuthContext();
   const { logout } = useLogout();
+
+  const [isVisible, setIsVisible] = useState(true);
+
+  const handleOpen = () => {
+    if (isVisible) setIsVisible(false);
+    if (!isVisible) setIsVisible(true);
+  };
 
   return (
     <StyledContainer>
@@ -34,8 +43,10 @@ function Sidebar() {
               <Avatar src={user.photoURL} userID={user.uid} />
             </StyledUserContainer>
           )}
+          <StyledMenu onClick={handleOpen} size={48} />
         </StyledTitleContainer>
-        <StyledNavWrapper>
+
+        <StyledNavWrapper className={isVisible ? "open" : ""}>
           {user && (
             <StyledLinksContainer>
               <StyledNavLink to={paths.home}>Home</StyledNavLink>

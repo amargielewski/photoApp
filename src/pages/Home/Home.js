@@ -52,7 +52,7 @@ function Home() {
       return false;
     });
 
-  console.log("isPending:", isPending);
+  // console.log("isPending:", isPending);
   return (
     <StyledWrapper>
       <StyledSearchContainer>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Menu } from "react-feather";
 import { NavLink } from "react-router-dom";
 
 const StyledContainer = styled.div`
@@ -39,6 +40,10 @@ const LoginSignupWrapper = styled.div`
     background-color: ${({ theme }) => theme.colors.primaryBackground};
     color: ${({ theme }) => theme.colors.primary};
     transform: translateY(-10px);
+  }
+
+  @media (max-width: 750px) {
+    margin-top: 500px;
   }
 `;
 
@@ -143,7 +148,7 @@ const StyledLinksContainer = styled.div`
   }
 
   @media (max-width: 750px) {
-    margin-top: 0;
+    height: auto;
   }
 `;
 
@@ -164,6 +169,7 @@ const StyledNavWrapper = styled.div`
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-end;
+  transition: 0.3s;
 
   @media (max-width: 750px) {
     position: absolute;
@@ -171,7 +177,16 @@ const StyledNavWrapper = styled.div`
     left: 0;
     width: 100%;
     height: calc(100vh - 60px);
-    background-color: #fff;
+    background-color: ${({ theme }) => theme.colors.primary};
+    display: ${({ className }) => (className === "open" ? "none" : "block")};
+  }
+`;
+
+const StyledMenu = styled(Menu)`
+  display: none;
+  @media (max-width: 750px) {
+    margin-right: 20px;
+    display: block;
   }
 `;
 
@@ -188,4 +203,5 @@ export {
   StyledLinksContainer,
   StyledUsername,
   StyledNavWrapper,
+  StyledMenu,
 };
