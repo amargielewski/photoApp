@@ -17,7 +17,8 @@ import {
   StyledLinksContainer,
   StyledUsername,
   StyledNavWrapper,
-  StyledMenu,
+  StyledMenuButtonOpen,
+  StyledMenuButtonClose,
 } from "./SidebarStyle";
 
 function Sidebar() {
@@ -29,6 +30,11 @@ function Sidebar() {
   const handleOpen = () => {
     if (isVisible) setIsVisible(false);
     if (!isVisible) setIsVisible(true);
+  };
+
+  const handleLogout = async () => {
+    handleOpen();
+    logout();
   };
 
   return (
@@ -43,27 +49,51 @@ function Sidebar() {
               <Avatar src={user.photoURL} userID={user.uid} />
             </StyledUserContainer>
           )}
-          <StyledMenu onClick={handleOpen} size={48} />
+          {isVisible ? (
+            <StyledMenuButtonOpen
+              onClick={handleOpen}
+              size={40}
+              color={"#fff"}
+            />
+          ) : (
+            <StyledMenuButtonClose
+              onClick={handleOpen}
+              size={40}
+              color={"#fff"}
+            />
+          )}
         </StyledTitleContainer>
 
         <StyledNavWrapper className={isVisible ? "open" : ""}>
           {user && (
             <StyledLinksContainer>
-              <StyledNavLink to={paths.home}>Home</StyledNavLink>
-              <StyledNavLink to={paths.create}>Create</StyledNavLink>
+              <StyledNavLink onClick={handleOpen} to={paths.home}>
+                Home
+              </StyledNavLink>
+              <StyledNavLink onClick={handleOpen} to={paths.create}>
+                Create
+              </StyledNavLink>
 
-              <StyledNavLink to={`/profile/${user.uid}`}>Profile</StyledNavLink>
+              <StyledNavLink onClick={handleOpen} to={`/profile/${user.uid}`}>
+                Profile
+              </StyledNavLink>
             </StyledLinksContainer>
           )}
 
           <LoginSignupWrapper>
             {!user ? (
               <>
-                <StyledNavLink to={paths.login}>Login</StyledNavLink>
-                <StyledNavLink to={paths.signup}>Signup</StyledNavLink>
+                <StyledNavLink onClick={handleOpen} to={paths.login}>
+                  Login
+                </StyledNavLink>
+                <StyledNavLink onClick={handleOpen} to={paths.signup}>
+                  Signup
+                </StyledNavLink>
               </>
             ) : (
-              <StyledLogoutButton onClick={logout}>logout</StyledLogoutButton>
+              <StyledLogoutButton onClick={handleLogout}>
+                logout
+              </StyledLogoutButton>
             )}
           </LoginSignupWrapper>
         </StyledNavWrapper>

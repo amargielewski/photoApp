@@ -14,6 +14,9 @@ const StyledInputText = styled.p`
   font-size: ${({ theme }) => theme.fontSize.m};
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   margin-bottom: 20px;
+  @media (max-width: 750px) {
+    margin-top: 20px;
+  }
 `;
 
 const StyledSearchContainer = styled.div`
@@ -46,11 +49,6 @@ const StyledScrollButton = styled.div`
   align-items: center;
 `;
 
-const StyledScrollImage = styled.img`
-  width: 50px;
-  height: 50px;
-`;
-
 export {
   StyledInfoBox,
   StyledInput,
@@ -58,5 +56,4 @@ export {
   StyledInputText,
   StyledWrapper,
   StyledScrollButton,
-  StyledScrollImage,
 };

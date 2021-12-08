@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Menu } from "react-feather";
+import { Menu, X } from "react-feather";
 import { NavLink } from "react-router-dom";
 
 const StyledContainer = styled.div`
@@ -14,7 +14,7 @@ const StyledContainer = styled.div`
 
   @media (max-width: 750px) {
     width: 100%;
-    height: 60px;
+    height: 70px;
     min-height: auto;
   }
 `;
@@ -43,7 +43,7 @@ const LoginSignupWrapper = styled.div`
   }
 
   @media (max-width: 750px) {
-    margin-top: 500px;
+    margin-top: 200px;
   }
 `;
 
@@ -70,6 +70,8 @@ const StyledTitleContainer = styled.div`
 
   @media (max-width: 750px) {
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     height: 100%;
   }
@@ -112,14 +114,15 @@ const StyledUserContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   position: relative;
-
-  ::after {
-    content: "";
-    position: absolute;
-    width: 300px;
-    height: 1px;
-    background-color: ${({ theme }) => theme.colors.secondaryFont};
-    bottom: -10px;
+  @media (min-width: 750px) {
+    ::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 1px;
+      background-color: ${({ theme }) => theme.colors.secondaryFont};
+      bottom: -10px;
+    }
   }
 
   @media (max-width: 750px) {
@@ -148,7 +151,8 @@ const StyledLinksContainer = styled.div`
   }
 
   @media (max-width: 750px) {
-    height: auto;
+    margin-top: 50px;
+    height: 60%;
   }
 `;
 
@@ -168,22 +172,30 @@ const StyledNavWrapper = styled.div`
   display: flex;
   align-self: stretch;
   flex-direction: column;
-  justify-content: flex-end;
   transition: 0.3s;
 
   @media (max-width: 750px) {
     position: absolute;
-    top: 60px;
+    top: 70px;
     left: 0;
     width: 100%;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 70px);
     background-color: ${({ theme }) => theme.colors.primary};
     display: ${({ className }) => (className === "open" ? "none" : "block")};
   }
 `;
 
-const StyledMenu = styled(Menu)`
+const StyledMenuButtonOpen = styled(Menu)`
   display: none;
+  @media (max-width: 750px) {
+    margin-right: 20px;
+    display: block;
+  }
+`;
+
+const StyledMenuButtonClose = styled(X)`
+  display: none;
+
   @media (max-width: 750px) {
     margin-right: 20px;
     display: block;
@@ -203,5 +215,6 @@ export {
   StyledLinksContainer,
   StyledUsername,
   StyledNavWrapper,
-  StyledMenu,
+  StyledMenuButtonOpen,
+  StyledMenuButtonClose,
 };

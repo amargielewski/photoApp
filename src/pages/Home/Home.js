@@ -1,8 +1,7 @@
 import PhotoList from "../../components/photoList/PhotoList";
 import { useCollection } from "../../hooks/useCollection";
 import { useEffect, useState } from "react";
-import arrowUp from "../../assets/images/arrowUp.svg";
-
+import { ChevronsUp } from "react-feather";
 import {
   StyledInput,
   StyledSearchContainer,
@@ -10,7 +9,6 @@ import {
   StyledWrapper,
   StyledInfoBox,
   StyledScrollButton,
-  StyledScrollImage,
 } from "./HomeStyle";
 
 function Home() {
@@ -73,7 +71,8 @@ function Home() {
       )}
       {isVisible && (
         <StyledScrollButton onClick={scrollToTop}>
-          <StyledScrollImage src={arrowUp} />
+          {" "}
+          <ChevronsUp size={25} color={"#fff"} />
         </StyledScrollButton>
       )}
     </StyledWrapper>
