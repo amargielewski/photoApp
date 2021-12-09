@@ -25,7 +25,7 @@ function Sidebar() {
   const { user } = useAuthContext();
   const { logout } = useLogout();
 
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   const handleOpen = () => {
     if (isVisible) setIsVisible(false);

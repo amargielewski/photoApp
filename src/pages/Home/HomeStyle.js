@@ -20,6 +20,7 @@ const StyledInputText = styled.p`
 `;
 
 const StyledSearchContainer = styled.div`
+  align-self: flex-start;
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -27,7 +28,10 @@ const StyledSearchContainer = styled.div`
 
   color: ${({ theme }) => theme.colors.primaryFont};
 `;
-const StyledWrapper = styled.div``;
+const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const StyledInfoBox = styled.div`
   margin-top: 50px;
