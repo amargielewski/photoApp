@@ -17,7 +17,7 @@ function PhotoList({ document }) {
       {document &&
         document.map((doc) => (
           <StyledContainer key={doc.id}>
-            <CardWrapper key={doc.id}>
+            <CardWrapper>
               <StyledLink to={`/details/${doc.id}`}>
                 <StyledImage src={doc.photoURL} alt={doc.name} />
               </StyledLink>

@@ -16,7 +16,6 @@ function Home() {
   const { documents, error } = useCollection("photos");
   const [name, setName] = useState("");
   const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.pageYOffset > 400) {

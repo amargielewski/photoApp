@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import PhotoList from "../../components/photoList/PhotoList";
 import { useEffect, useState } from "react";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, doc, getDocs, query, where } from "firebase/firestore";
 import { database } from "./../../firebase/config";
 //Styles
 import {
@@ -40,7 +40,7 @@ function UserProfile() {
         });
 
         photos.forEach((photo) => {
-          photosData.push(photo.data());
+          photosData.push({ ...photo.data(), id: photo.id });
         });
 
         if (!userData) return;
@@ -50,7 +50,7 @@ function UserProfile() {
   }, [id]);
 
   if (!data) return <div>Loading</div>;
-
+  console.log(data.photos);
   return (
     <StyledWrapper>
       <StyledUserContainer>

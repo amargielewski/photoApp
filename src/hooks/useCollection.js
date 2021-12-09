@@ -41,7 +41,6 @@ export const useCollection = (c, _q, deps) => {
 
     setError(null);
     setIsPending(false);
-
     return () => unsub();
   }, [c, q, deps]);
 
