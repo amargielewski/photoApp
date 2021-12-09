@@ -60,6 +60,7 @@ const StyledInput = styled.input`
 
   @media (max-width: 500px) {
     width: 200px;
+    font-size: ${({ theme }) => theme.fontSize.s};
   }
 `;
 
