@@ -1,5 +1,6 @@
 import { paths } from "../../paths/paths";
 import CameraIcon from "../../assets/images/camera.svg";
+import { useLayoutContext } from "../../hooks/useLayoutContext";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useLogout } from "../../hooks/useLogout";
 import Avatar from "../avatar/Avatar";
@@ -24,12 +25,17 @@ import {
 function Sidebar() {
   const { user } = useAuthContext();
   const { logout } = useLogout();
-
+  const { dispatch } = useLayoutContext();
   const [isVisible, setIsVisible] = useState(false);
 
   const handleOpen = () => {
-    if (isVisible) setIsVisible(false);
-    if (!isVisible) setIsVisible(true);
+    if (isVisible) {
+      setIsVisible(false);
+      dispatch({ type: "LOCK_BODY_SCROLL", payload: false });
+      return;
+    }
+    dispatch({ type: "LOCK_BODY_SCROLL", payload: true });
+    setIsVisible(true);
   };
 
   const handleLogout = async () => {
@@ -50,13 +56,13 @@ function Sidebar() {
             </StyledUserContainer>
           )}
           {isVisible ? (
-            <StyledMenuButtonOpen
+            <StyledMenuButtonClose
               onClick={handleOpen}
               size={40}
               color={"#fff"}
             />
           ) : (
-            <StyledMenuButtonClose
+            <StyledMenuButtonOpen
               onClick={handleOpen}
               size={40}
               color={"#fff"}
@@ -64,7 +70,7 @@ function Sidebar() {
           )}
         </StyledTitleContainer>
 
-        <StyledNavWrapper className={isVisible ? "open" : ""}>
+        <StyledNavWrapper className={isVisible ? "" : "open"}>
           {user && (
             <StyledLinksContainer>
               <StyledNavLink onClick={handleOpen} to={paths.home}>

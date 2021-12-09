@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { paths } from "./paths/paths";
 import { theme } from "./styles/mainTheme";
-
+import { useEffect } from "react";
 //pages && components
 import Sidebar from "./components/Sidebar/Sidebar";
 import Home from "./pages/Home/Home";
@@ -13,6 +13,7 @@ import Login from "./pages/Login/Login";
 import PhotoDetails from "./pages/PhotoDetails/PhotoDetails";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import { useAuthContext } from "./hooks/useAuthContext";
+import { useLayoutContext } from "./hooks/useLayoutContext";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -31,6 +32,13 @@ const StyledContainer = styled.div`
 
 function App() {
   const { user } = useAuthContext();
+  const { lockBodyScroll } = useLayoutContext();
+
+  useEffect(() => {
+    if (lockBodyScroll) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "auto";
+  }, [lockBodyScroll]);
+
   return (
     <ThemeProvider theme={theme}>
       <StyledWrapper className="App">
