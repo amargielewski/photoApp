@@ -6,7 +6,6 @@ import {
   Timestamp,
   updateDoc,
   arrayUnion,
-  serverTimestamp,
 } from "firebase/firestore";
 import { database } from "../../firebase/config";
 import { useEffect, useState } from "react";
@@ -78,7 +77,6 @@ function PhotoDetails() {
     await updateDoc(docRef, {
       comments: arrayUnion(commentToAdd),
     });
-    console.log(commentToAdd.key);
     setNewComment("");
   };
 
