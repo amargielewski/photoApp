@@ -9,7 +9,8 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledForm = styled.form`
-  width: 700px;
+  padding: 20px 80px;
+
   height: 500px;
   box-shadow: ${({ theme }) => theme.boxShadow.primary};
   display: flex;
@@ -18,13 +19,17 @@ const StyledForm = styled.form`
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   align-items: center;
 
-  @media (max-width: 1100px) {
-    width: 550px;
+  @media (max-width: 900px) {
+    padding: 20px 50px;
   }
 
-  @media (max-width: 950px) {
-    width: 400px;
-  } ;
+  @media (max-width: 750px) {
+    padding: 20px 50px;
+  }
+
+  @media (max-width: 750px) {
+    padding: 20px 30px;
+  }
 `;
 
 const StyledTitle = styled.h2`
@@ -32,6 +37,10 @@ const StyledTitle = styled.h2`
   font-size: ${({ theme }) => theme.fontSize.xl};
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   color: ${({ theme }) => theme.colors.primaryFont};
+
+  @media (max-width: 500px) {
+    font-size: ${({ theme }) => theme.fontSize.l};
+  } ;
 `;
 
 const StyledInputTitle = styled.span`
@@ -47,7 +56,16 @@ const StyledInput = styled.input`
 
   @media (max-width: 1100px) {
     width: 300px;
-  } ;
+  }
+
+  @media (max-width: 750px) {
+    width: 250px;
+  }
+
+  @media (max-width: 500px) {
+    width: 200px;
+    font-size: ${({ theme }) => theme.fontSize.s};
+  }
 `;
 
 const StyledLabel = styled.label`
