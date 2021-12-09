@@ -6,6 +6,12 @@ const StyledWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 750px) {
+    height: 100%;
+    margin-top: 50px;
+    justify-content: flex-start;
+  }
 `;
 
 const StyledForm = styled.form`

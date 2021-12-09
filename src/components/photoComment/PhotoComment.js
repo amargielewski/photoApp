@@ -42,13 +42,12 @@ function PhotoComment({ id }) {
     <StyledWrapper>
       <StyledCommentList>
         {data.comments.map((com) => (
-          <StyledSingleCommentContainer key={com.id}>
+          <StyledSingleCommentContainer key={com.uid}>
             {user.uid === com.uid && (
               <StyledDeleteButton onClick={() => handleDelete(com)}>
                 X
               </StyledDeleteButton>
             )}
-
             <StyledUserContainer>
               <Avatar userID={com.uid} src={com.photoURL} />
               <StyledName>{com.displayName}</StyledName>
