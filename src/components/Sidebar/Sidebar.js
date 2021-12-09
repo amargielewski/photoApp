@@ -38,8 +38,12 @@ function Sidebar() {
     setIsVisible(true);
   };
 
+  const handleMenuClose = () => {
+    setIsVisible(false);
+  };
+
   const handleLogout = async () => {
-    handleOpen();
+    handleMenuClose();
     logout();
   };
 
@@ -52,7 +56,11 @@ function Sidebar() {
           {user && (
             <StyledUserContainer>
               <StyledUsername>Hi {user.displayName}</StyledUsername>
-              <Avatar src={user.photoURL} userID={user.uid} />
+              <Avatar
+                onClick={handleMenuClose}
+                src={user.photoURL}
+                userID={user.uid}
+              />
             </StyledUserContainer>
           )}
           {isVisible ? (
@@ -73,14 +81,17 @@ function Sidebar() {
         <StyledNavWrapper className={isVisible ? "" : "open"}>
           {user && (
             <StyledLinksContainer>
-              <StyledNavLink onClick={handleOpen} to={paths.home}>
+              <StyledNavLink onClick={handleMenuClose} to={paths.home}>
                 Home
               </StyledNavLink>
-              <StyledNavLink onClick={handleOpen} to={paths.create}>
+              <StyledNavLink onClick={handleMenuClose} to={paths.create}>
                 Create
               </StyledNavLink>
 
-              <StyledNavLink onClick={handleOpen} to={`/profile/${user.uid}`}>
+              <StyledNavLink
+                onClick={handleMenuClose}
+                to={`/profile/${user.uid}`}
+              >
                 Profile
               </StyledNavLink>
             </StyledLinksContainer>
@@ -89,10 +100,10 @@ function Sidebar() {
           <LoginSignupWrapper>
             {!user ? (
               <>
-                <StyledNavLink onClick={handleOpen} to={paths.login}>
+                <StyledNavLink onClick={handleMenuClose} to={paths.login}>
                   Login
                 </StyledNavLink>
-                <StyledNavLink onClick={handleOpen} to={paths.signup}>
+                <StyledNavLink onClick={handleMenuClose} to={paths.signup}>
                   Signup
                 </StyledNavLink>
               </>

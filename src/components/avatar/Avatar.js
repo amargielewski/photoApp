@@ -9,9 +9,9 @@ const StyledAvatar = styled.img`
 
 const StyledLink = styled(Link)``;
 
-function Avatar({ src, userID }) {
+function Avatar({ src, userID, onClick }) {
   return (
-    <StyledLink to={`/profile/${userID}`}>
+    <StyledLink onClick={onClick} to={`/profile/${userID}`}>
       <StyledAvatar src={src} />
     </StyledLink>
   );
