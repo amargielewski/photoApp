@@ -124,7 +124,7 @@ const StyledPhotoTitle = styled.h2`
 `;
 
 const StyledPhotoDescription = styled.p`
-  margin: 10px 0;
+  margin: 20px 0;
   font-size: ${({ theme }) => theme.fontSize.s};
   font-weight: ${({ theme }) => theme.fontWeight.normal};
   max-width: 700px;

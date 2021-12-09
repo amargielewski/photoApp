@@ -6,6 +6,7 @@ import {
   Timestamp,
   updateDoc,
   arrayUnion,
+  serverTimestamp,
 } from "firebase/firestore";
 import { database } from "../../firebase/config";
 import { useEffect, useState } from "react";
@@ -45,6 +46,7 @@ function PhotoDetails() {
   useEffect(() => {
     const controller = new AbortController();
     const docRef = doc(database, "photos", postID);
+
     getDoc(docRef).then((doc) => {
       setData(doc.data());
     });
@@ -63,19 +65,20 @@ function PhotoDetails() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log(docRef);
+
     const commentToAdd = {
       displayName: user.displayName,
       photoURL: user.photoURL,
       uid: user.uid,
       content: newComment,
       createdAt: Timestamp.fromDate(new Date()),
-      id: Math.random(),
     };
 
     await updateDoc(docRef, {
       comments: arrayUnion(commentToAdd),
     });
-
+    console.log(commentToAdd.key);
     setNewComment("");
   };
 
