@@ -8,6 +8,10 @@ const StyledInput = styled.input`
   border: none;
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   box-shadow: ${({ theme }) => theme.boxShadow.primary};
+
+  @media (max-width: 500px) {
+    max-width: 200px;
+  }
 `;
 
 const StyledInputText = styled.p`
@@ -27,6 +31,10 @@ const StyledSearchContainer = styled.div`
   margin-left: 50px;
 
   color: ${({ theme }) => theme.colors.primaryFont};
+
+  @media (max-width: 500px) {
+    margin-left: 20px;
+  }
 `;
 const StyledWrapper = styled.div`
   display: flex;
@@ -50,6 +58,7 @@ const StyledScrollButton = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   display: flex;
   justify-content: center;
+  cursor: pointer;
   align-items: center;
 `;
 
