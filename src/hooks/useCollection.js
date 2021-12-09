@@ -4,7 +4,7 @@ import { database } from "../firebase/config";
 //firebase imports
 import { onSnapshot, collection, query, where } from "firebase/firestore";
 
-export const useCollection = (c, _q) => {
+export const useCollection = (c, _q, deps) => {
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
@@ -43,7 +43,7 @@ export const useCollection = (c, _q) => {
     setIsPending(false);
 
     return () => unsub();
-  }, [c, q]);
+  }, [c, q, deps]);
 
   return { documents, error, isPending };
 };
