@@ -34,6 +34,11 @@ const LoginSignupWrapper = styled.div`
   a {
     padding: 15px 20px;
     border-radius: 8px;
+
+    @media (max-width: 750px) {
+      padding: 20px 40px;
+      font-size: ${({ theme }) => theme.fontSize.l};
+    }
   }
 
   .active {
