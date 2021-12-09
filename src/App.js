@@ -21,6 +21,12 @@ const StyledWrapper = styled.div`
 const StyledContainer = styled.div`
   width: 100%;
   height: 100%;
+  padding-left: 300px;
+
+  @media (max-width: 750px) {
+    padding-left: 0;
+    padding-top: 60px;
+  }
 `;
 
 function App() {

@@ -8,6 +8,7 @@ const StyledWrapper = styled.div`
 
   @media (max-width: 1200px) {
     flex-direction: column;
+    align-items: center;
     height: 100%;
     margin: 20px 0;
   }

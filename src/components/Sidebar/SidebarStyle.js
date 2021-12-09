@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Menu, X } from "react-feather";
 import { NavLink } from "react-router-dom";
 
 const StyledContainer = styled.div`
@@ -9,13 +10,16 @@ const StyledContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 10;
 
   @media (max-width: 750px) {
-    min-width: 200px;
+    width: 100%;
+    height: 70px;
+    min-height: auto;
   }
 `;
 const StyledWrapper = styled.div`
-  height: inherit;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -37,10 +41,19 @@ const LoginSignupWrapper = styled.div`
     color: ${({ theme }) => theme.colors.primary};
     transform: translateY(-10px);
   }
+
+  @media (max-width: 750px) {
+    margin-top: 200px;
+  }
 `;
 
 const StyledImage = styled.img`
   width: 80px;
+
+  @media (max-width: 750px) {
+    margin-left: 40px;
+    width: 50px;
+  }
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -54,6 +67,14 @@ const StyledTitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 750px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
 `;
 const StyledTitle = styled.h2`
   margin: 20px 0;
@@ -61,6 +82,11 @@ const StyledTitle = styled.h2`
   font-weight: bold;
   font-size: ${({ theme }) => theme.fontSize.l};
   letter-spacing: 3px;
+
+  @media (max-width: 750px) {
+    margin: 0;
+    display: none;
+  }
 `;
 
 const StyledLogoutButton = styled.button`
@@ -88,18 +114,19 @@ const StyledUserContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   position: relative;
-
-  ::after {
-    content: "";
-    position: absolute;
-    width: 300px;
-    height: 1px;
-    background-color: ${({ theme }) => theme.colors.secondaryFont};
-    bottom: -10px;
-
-    @media (max-width: 750px) {
-      width: 200px;
+  @media (min-width: 750px) {
+    ::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 1px;
+      background-color: ${({ theme }) => theme.colors.secondaryFont};
+      bottom: -10px;
     }
+  }
+
+  @media (max-width: 750px) {
+    margin-top: 0;
   }
 `;
 
@@ -122,6 +149,11 @@ const StyledLinksContainer = styled.div`
     color: ${({ theme }) => theme.colors.primary};
     background-color: ${({ theme }) => theme.colors.primaryBackground};
   }
+
+  @media (max-width: 750px) {
+    margin-top: 50px;
+    height: 60%;
+  }
 `;
 
 const StyledUsername = styled.p`
@@ -129,6 +161,45 @@ const StyledUsername = styled.p`
   color: ${({ theme }) => theme.colors.secondaryFont};
   margin-right: 20px;
   font-weight: ${({ theme }) => theme.fontWeight.normal};
+
+  @media (max-width: 750px) {
+    display: none;
+  }
+`;
+
+const StyledNavWrapper = styled.div`
+  flex: 1;
+  display: flex;
+  align-self: stretch;
+  flex-direction: column;
+  transition: 0.3s;
+
+  @media (max-width: 750px) {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background-color: ${({ theme }) => theme.colors.primary};
+    display: ${({ className }) => (className === "open" ? "none" : "block")};
+  }
+`;
+
+const StyledMenuButtonOpen = styled(Menu)`
+  display: none;
+  @media (max-width: 750px) {
+    margin-right: 20px;
+    display: block;
+  }
+`;
+
+const StyledMenuButtonClose = styled(X)`
+  display: none;
+
+  @media (max-width: 750px) {
+    margin-right: 20px;
+    display: block;
+  }
 `;
 
 export {
@@ -143,4 +214,7 @@ export {
   StyledUserContainer,
   StyledLinksContainer,
   StyledUsername,
+  StyledNavWrapper,
+  StyledMenuButtonOpen,
+  StyledMenuButtonClose,
 };

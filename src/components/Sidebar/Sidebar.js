@@ -3,6 +3,7 @@ import CameraIcon from "../../assets/images/camera.svg";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useLogout } from "../../hooks/useLogout";
 import Avatar from "../avatar/Avatar";
+import { useState } from "react";
 import {
   StyledContainer,
   StyledWrapper,
@@ -15,11 +16,26 @@ import {
   StyledUserContainer,
   StyledLinksContainer,
   StyledUsername,
+  StyledNavWrapper,
+  StyledMenuButtonOpen,
+  StyledMenuButtonClose,
 } from "./SidebarStyle";
 
 function Sidebar() {
   const { user } = useAuthContext();
   const { logout } = useLogout();
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleOpen = () => {
+    if (isVisible) setIsVisible(false);
+    if (!isVisible) setIsVisible(true);
+  };
+
+  const handleLogout = async () => {
+    handleOpen();
+    logout();
+  };
 
   return (
     <StyledContainer>
@@ -33,26 +49,54 @@ function Sidebar() {
               <Avatar src={user.photoURL} userID={user.uid} />
             </StyledUserContainer>
           )}
-        </StyledTitleContainer>
-        {user && (
-          <StyledLinksContainer>
-            <StyledNavLink to={paths.home}>Home</StyledNavLink>
-            <StyledNavLink to={paths.create}>Create</StyledNavLink>
-
-            <StyledNavLink to={`/profile/${user.uid}`}>Profile</StyledNavLink>
-          </StyledLinksContainer>
-        )}
-
-        <LoginSignupWrapper>
-          {!user ? (
-            <>
-              <StyledNavLink to={paths.login}>Login</StyledNavLink>
-              <StyledNavLink to={paths.signup}>Signup</StyledNavLink>
-            </>
+          {isVisible ? (
+            <StyledMenuButtonOpen
+              onClick={handleOpen}
+              size={40}
+              color={"#fff"}
+            />
           ) : (
-            <StyledLogoutButton onClick={logout}>logout</StyledLogoutButton>
+            <StyledMenuButtonClose
+              onClick={handleOpen}
+              size={40}
+              color={"#fff"}
+            />
           )}
-        </LoginSignupWrapper>
+        </StyledTitleContainer>
+
+        <StyledNavWrapper className={isVisible ? "open" : ""}>
+          {user && (
+            <StyledLinksContainer>
+              <StyledNavLink onClick={handleOpen} to={paths.home}>
+                Home
+              </StyledNavLink>
+              <StyledNavLink onClick={handleOpen} to={paths.create}>
+                Create
+              </StyledNavLink>
+
+              <StyledNavLink onClick={handleOpen} to={`/profile/${user.uid}`}>
+                Profile
+              </StyledNavLink>
+            </StyledLinksContainer>
+          )}
+
+          <LoginSignupWrapper>
+            {!user ? (
+              <>
+                <StyledNavLink onClick={handleOpen} to={paths.login}>
+                  Login
+                </StyledNavLink>
+                <StyledNavLink onClick={handleOpen} to={paths.signup}>
+                  Signup
+                </StyledNavLink>
+              </>
+            ) : (
+              <StyledLogoutButton onClick={handleLogout}>
+                logout
+              </StyledLogoutButton>
+            )}
+          </LoginSignupWrapper>
+        </StyledNavWrapper>
       </StyledWrapper>
     </StyledContainer>
   );

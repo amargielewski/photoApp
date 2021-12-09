@@ -25,6 +25,16 @@ const StyledImage = styled.img`
     width: 200px;
     height: 200px;
   }
+
+  @media (max-width: 600px) {
+    width: 300px;
+    height: 300px;
+  }
+
+  @media (max-width: 450px) {
+    width: 200px;
+    height: 200px;
+  }
 `;
 
 const StyledLink = styled(Link)``;

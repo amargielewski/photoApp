@@ -14,9 +14,13 @@ const StyledInputText = styled.p`
   font-size: ${({ theme }) => theme.fontSize.m};
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   margin-bottom: 20px;
+  @media (max-width: 750px) {
+    margin-top: 20px;
+  }
 `;
 
 const StyledSearchContainer = styled.div`
+  align-self: flex-start;
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -24,7 +28,10 @@ const StyledSearchContainer = styled.div`
 
   color: ${({ theme }) => theme.colors.primaryFont};
 `;
-const StyledWrapper = styled.div``;
+const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const StyledInfoBox = styled.div`
   margin-top: 50px;
@@ -46,11 +53,6 @@ const StyledScrollButton = styled.div`
   align-items: center;
 `;
 
-const StyledScrollImage = styled.img`
-  width: 50px;
-  height: 50px;
-`;
-
 export {
   StyledInfoBox,
   StyledInput,
@@ -58,5 +60,4 @@ export {
   StyledInputText,
   StyledWrapper,
   StyledScrollButton,
-  StyledScrollImage,
 };

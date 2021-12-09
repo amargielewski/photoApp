@@ -7,6 +7,7 @@ import { onSnapshot, collection, query, where } from "firebase/firestore";
 export const useCollection = (c, _q) => {
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
+  const [isPending, setIsPending] = useState(false);
 
   //setup query
 
@@ -14,6 +15,7 @@ export const useCollection = (c, _q) => {
 
   useEffect(() => {
     setError(null);
+    setIsPending(true);
     let ref = collection(database, c);
 
     if (q) {
@@ -33,13 +35,15 @@ export const useCollection = (c, _q) => {
       (error) => {
         console.log(error);
         setError(error.message);
+        setIsPending(false);
       }
     );
 
     setError(null);
+    setIsPending(false);
 
     return () => unsub();
   }, [c, q]);
 
-  return { documents, error };
+  return { documents, error, isPending };
 };
