@@ -33,7 +33,6 @@ export const useCollection = (c, _q, deps) => {
         setDocuments(results);
       },
       (error) => {
-        console.log(error);
         setError(error.message);
         setIsPending(false);
       }

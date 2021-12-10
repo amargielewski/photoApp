@@ -215,6 +215,13 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
+const StyledError = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.s};
+  color: ${({ theme }) => theme.colors.secondaryFont};
+  margin: 10px;
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
+`;
+
 export {
   StyledContainer,
   StyledWrapper,
@@ -231,4 +238,5 @@ export {
   StyledMenuButtonOpen,
   StyledMenuButtonClose,
   StyledLink,
+  StyledError,
 };

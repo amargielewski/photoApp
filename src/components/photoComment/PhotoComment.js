@@ -47,7 +47,6 @@ function PhotoComment({ id }) {
       <StyledCommentList>
         {data.comments.map((com) => (
           <StyledSingleCommentContainer key={com.createdAt}>
-            {console.log(com)}
             {user.uid === com.uid && (
               <StyledDeleteButton onClick={() => handleDelete(com)}>
                 X
