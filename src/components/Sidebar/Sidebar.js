@@ -10,6 +10,9 @@ import { useLogout } from "../../hooks/useLogout";
 import Avatar from "../avatar/Avatar";
 //paths
 import { paths } from "../../paths/paths";
+
+//text
+import { pageText } from "../../PageText/PageText";
 //styles
 import {
   StyledContainer,
@@ -60,7 +63,7 @@ function Sidebar() {
       <StyledWrapper>
         <StyledTitleContainer>
           <StyledLink to={paths.home}>
-            <StyledTitle>PhotoApp</StyledTitle>
+            <StyledTitle>{pageText.Sidebar.appName}</StyledTitle>
             <StyledImage src={CameraIcon} />
           </StyledLink>
           {user && (
@@ -92,17 +95,17 @@ function Sidebar() {
           {user && (
             <StyledLinksContainer>
               <StyledNavLink onClick={handleMenuClose} to={paths.home}>
-                Home
+                {pageText.Sidebar.pathsName.home}
               </StyledNavLink>
               <StyledNavLink onClick={handleMenuClose} to={paths.create}>
-                Create
+                {pageText.Sidebar.pathsName.create}
               </StyledNavLink>
 
               <StyledNavLink
                 onClick={handleMenuClose}
                 to={`/profile/${user.uid}`}
               >
-                Profile
+                {pageText.Sidebar.pathsName.profile}
               </StyledNavLink>
             </StyledLinksContainer>
           )}
@@ -111,15 +114,15 @@ function Sidebar() {
             {!user ? (
               <>
                 <StyledNavLink onClick={handleMenuClose} to={paths.login}>
-                  Login
+                  {pageText.Sidebar.pathsName.login}
                 </StyledNavLink>
                 <StyledNavLink onClick={handleMenuClose} to={paths.signup}>
-                  Signup
+                  {pageText.Sidebar.pathsName.signup}
                 </StyledNavLink>
               </>
             ) : (
               <StyledLogoutButton onClick={handleLogout}>
-                logout
+                {pageText.Sidebar.logout}
               </StyledLogoutButton>
             )}
           </LoginSignupWrapper>

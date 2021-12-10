@@ -17,6 +17,9 @@ import {
   StyledPhotoContainer,
 } from "./UserProfileStyle";
 
+//text
+import { pageText } from "../../PageText/PageText";
+
 const USERS_COLLECTION = "users";
 const PHOTOS_COLLECTION = "photos";
 
@@ -53,7 +56,7 @@ function UserProfile() {
     );
   }, [id]);
 
-  if (!data) return <div>Loading</div>;
+  if (!data) return <div>{pageText.UserProfile.loading}</div>;
   return (
     <StyledWrapper>
       <StyledUserContainer>
@@ -62,7 +65,7 @@ function UserProfile() {
       </StyledUserContainer>
       <StyledPhotoContainer>
         {data.photos.length < 1 && (
-          <StyledInfo>This user has no photos to load : (</StyledInfo>
+          <StyledInfo>{pageText.UserProfile.profileMsg}</StyledInfo>
         )}
         <PhotoList document={data.photos} />
       </StyledPhotoContainer>

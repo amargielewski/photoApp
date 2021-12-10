@@ -10,9 +10,10 @@ import {
   StyledInfoWrapper,
   StyledLink,
 } from "./PhotoListStyle";
+import { pageText } from "../../PageText/PageText";
 
 function PhotoList({ document }) {
-  if (!document) return <div>Waiting for documents to load</div>;
+  if (!document) return <div>{pageText.PhotoList.photosMsg}</div>;
 
   return (
     <StyledWrapper>
@@ -28,7 +29,10 @@ function PhotoList({ document }) {
                   userID={doc.createdBy.id}
                   src={doc.createdBy.userPhotoURL}
                 />
-                <StyledName>Photo by: {doc.createdBy.displayName}</StyledName>
+                <StyledName>
+                  {pageText.PhotoList.photoCreatedBy}
+                  {doc.createdBy.displayName}
+                </StyledName>
               </StyledInfoWrapper>
             </CardWrapper>
           </StyledContainer>

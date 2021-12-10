@@ -3,7 +3,8 @@ import { useNavigate } from "react-router";
 
 //context
 import { useAuthContext } from "../../hooks/useAuthContext";
-
+//text
+import { pageText } from "../../PageText/PageText";
 //firebase
 import { database, fbStorage } from "../../firebase/config";
 import { addDoc, collection, Timestamp } from "@firebase/firestore";
@@ -84,9 +85,9 @@ function Create() {
   return (
     <StyledWrapper>
       <StyledForm onSubmit={handleSubmit}>
-        <StyledTitle>Add photo</StyledTitle>
+        <StyledTitle>{pageText.Create.title}</StyledTitle>
         <StyledLabel>
-          <StyledInputTitle>Photo Name:</StyledInputTitle>
+          <StyledInputTitle>{pageText.Create.nameInput}</StyledInputTitle>
           <StyledInput
             type="text"
             onChange={(e) => {
@@ -97,7 +98,9 @@ function Create() {
           />
         </StyledLabel>
         <StyledLabel>
-          <StyledInputTitle>Photo Description</StyledInputTitle>
+          <StyledInputTitle>
+            {pageText.Create.descriptionInput}
+          </StyledInputTitle>
           <StyledTextarea
             onChange={(e) => {
               setDescription(e.target.value);
@@ -107,11 +110,11 @@ function Create() {
           ></StyledTextarea>
         </StyledLabel>
         <StyledLabel>
-          <StyledInputTitle>Upload Photo:</StyledInputTitle>
+          <StyledInputTitle>{pageText.Create.uploadInput}</StyledInputTitle>
           <StyledInput type="file" onChange={handleFileChange} required />
         </StyledLabel>
         {photoError && <p>{photoError}</p>}
-        <StyledButton>Add</StyledButton>
+        <StyledButton> {pageText.Create.button}</StyledButton>
       </StyledForm>
     </StyledWrapper>
   );

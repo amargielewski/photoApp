@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+//text
+import { pageText } from "../../PageText/PageText";
 //hooks
 import useLogin from "../../hooks/useLogin";
 //styles
@@ -26,9 +27,9 @@ function Login() {
   return (
     <StyledWrapper>
       <StyledForm onSubmit={handleSubmit}>
-        <StyledTitle>Login Page</StyledTitle>
+        <StyledTitle> {pageText.Login.title}</StyledTitle>
         <StyledLabel>
-          <StyledInputTitle>Email:</StyledInputTitle>
+          <StyledInputTitle>{pageText.Login.email}</StyledInputTitle>
           <StyledInput
             type="email"
             onChange={(e) => setEmail(e.target.value)}
@@ -37,7 +38,7 @@ function Login() {
           />
         </StyledLabel>
         <StyledLabel>
-          <StyledInputTitle>Password:</StyledInputTitle>
+          <StyledInputTitle>{pageText.Login.password}</StyledInputTitle>
           <StyledInput
             type="password"
             onChange={(e) => setPassword(e.target.value)}
@@ -46,9 +47,9 @@ function Login() {
           />
         </StyledLabel>
         {!isPending ? (
-          <StyledButton>Login</StyledButton>
+          <StyledButton>{pageText.Login.loginBtn}</StyledButton>
         ) : (
-          <StyledButton>Loading...</StyledButton>
+          <StyledButton>{pageText.Login.loadingBtn}</StyledButton>
         )}
         {error && <p>{error}</p>}
       </StyledForm>

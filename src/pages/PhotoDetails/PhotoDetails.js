@@ -13,6 +13,9 @@ import {
 import { database } from "../../firebase/config";
 //context
 import { useAuthContext } from "../../hooks/useAuthContext";
+
+//text
+import { pageText } from "../../PageText/PageText";
 //components
 import PhotoComment from "../../components/photoComment/PhotoComment";
 import Avatar from "../../components/avatar/Avatar";
@@ -57,7 +60,7 @@ function PhotoDetails() {
     return () => controller.abort();
   }, [postID]);
 
-  if (!data) return <div>Waiting for Data</div>;
+  if (!data) return <div>{pageText.PhotoDetails.detailsMsg}</div>;
 
   const docRef = doc(database, COLLECTION_PHOTOS, postID);
   const handleDelete = async () => {
@@ -87,13 +90,13 @@ function PhotoDetails() {
       <StyledContainer>
         {user.uid === data.createdBy.id && (
           <StyledDeleteButton onClick={handleDelete}>
-            Delete Post
+            {pageText.PhotoDetails.deleteBtn}
           </StyledDeleteButton>
         )}
         <StyledAuthorContainer>
           <StyledAvatarContainer>
             <StyledAuthorName>
-              Created by: {data.createdBy.displayName}
+              {pageText.PhotoDetails.createdBy} {data.createdBy.displayName}
             </StyledAuthorName>
 
             <Avatar
@@ -110,9 +113,12 @@ function PhotoDetails() {
             </StyledDateText>
           </StyledDateContainer>
         </StyledAuthorContainer>
-        <StyledPhotoTitle>Photo Name: {data.name}</StyledPhotoTitle>
+        <StyledPhotoTitle>
+          {" "}
+          {pageText.PhotoDetails.photoName} {data.name}
+        </StyledPhotoTitle>
         <StyledPhotoDescription>
-          Photo Description: {data.description}
+          {pageText.PhotoDetails.photoDescription} {data.description}
         </StyledPhotoDescription>
 
         <StyledImage src={data.photoURL} />
@@ -121,13 +127,13 @@ function PhotoDetails() {
         <PhotoComment id={postID} />
         <StyledForm onSubmit={handleSubmit}>
           <StyledFormLabel>
-            <StyledFormTitle>Make new comment:</StyledFormTitle>
+            <StyledFormTitle> {pageText.PhotoDetails.newCom}</StyledFormTitle>
             <StyledTextarea
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
             />
           </StyledFormLabel>
-          <StyledButton>Add Comment</StyledButton>
+          <StyledButton> {pageText.PhotoDetails.addCom}</StyledButton>
         </StyledForm>
       </StyledCommentContainer>
     </StyledWrapper>
