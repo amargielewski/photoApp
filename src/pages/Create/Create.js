@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+
+//context
 import { useAuthContext } from "../../hooks/useAuthContext";
+
+//firebase
 import { database, fbStorage } from "../../firebase/config";
 import { addDoc, collection, Timestamp } from "@firebase/firestore";
 import { getDownloadURL, uploadBytes, ref } from "@firebase/storage";
-
+//styles
 import {
   StyledTextarea,
   StyledButton,

@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+
+//context
 import { LayoutContextProvider } from "./context/LayoutContext";
 import { AuthContextProvider } from "./context/AuthContext";
 

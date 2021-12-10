@@ -1,9 +1,10 @@
-import GlobalStyle from "./styles/GlobalStyles";
-import styled, { ThemeProvider } from "styled-components";
+import { useEffect } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import styled, { ThemeProvider } from "styled-components";
+
+//paths & theme
 import { paths } from "./paths/paths";
 import { theme } from "./styles/mainTheme";
-import { useEffect } from "react";
 //pages && components
 import Sidebar from "./components/Sidebar/Sidebar";
 import Home from "./pages/Home/Home";
@@ -12,6 +13,9 @@ import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 import PhotoDetails from "./pages/PhotoDetails/PhotoDetails";
 import UserProfile from "./pages/UserProfile/UserProfile";
+//styles
+import GlobalStyle from "./styles/GlobalStyles";
+//context
 import { useAuthContext } from "./hooks/useAuthContext";
 import { useLayoutContext } from "./hooks/useLayoutContext";
 
@@ -35,8 +39,8 @@ function App() {
   const { lockBodyScroll } = useLayoutContext();
 
   useEffect(() => {
-    if (lockBodyScroll) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "auto";
+    if (lockBodyScroll) document.body.classList.add("scroll-block");
+    else document.body.classList.remove("scroll-block");
   }, [lockBodyScroll]);
 
   return (

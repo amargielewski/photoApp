@@ -1,6 +1,7 @@
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
+//icons
 import { Menu, X } from "react-feather";
-import { NavLink } from "react-router-dom";
 
 const StyledContainer = styled.div`
   min-width: 300px;
@@ -207,6 +208,13 @@ const StyledMenuButtonClose = styled(X)`
   }
 `;
 
+const StyledLink = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+`;
+
 export {
   StyledContainer,
   StyledWrapper,
@@ -222,4 +230,5 @@ export {
   StyledNavWrapper,
   StyledMenuButtonOpen,
   StyledMenuButtonClose,
+  StyledLink,
 };

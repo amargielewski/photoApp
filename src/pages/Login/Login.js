@@ -1,6 +1,8 @@
 import { useState } from "react";
-import useLogin from "../../hooks/useLogin";
 
+//hooks
+import useLogin from "../../hooks/useLogin";
+//styles
 import {
   StyledForm,
   StyledWrapper,

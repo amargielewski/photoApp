@@ -1,10 +1,13 @@
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import { useEffect, useState } from "react";
+//components
+import Avatar from "../avatar/Avatar";
+//firebase
 import { database } from "../../firebase/config";
 import { onSnapshot, doc, arrayRemove, updateDoc } from "@firebase/firestore";
-import { useEffect, useState } from "react";
-import Avatar from "../avatar/Avatar";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
+//context
 import { useAuthContext } from "../../hooks/useAuthContext";
-
+//styles
 import {
   StyledWrapper,
   StyledName,
@@ -15,6 +18,7 @@ import {
   StyledSingleCommentContainer,
   StyledCommentList,
 } from "./PhotoCommentStyle";
+import { compareAsc } from "date-fns";
 
 function PhotoComment({ id }) {
   const [data, setData] = useState(null);
@@ -42,7 +46,8 @@ function PhotoComment({ id }) {
     <StyledWrapper>
       <StyledCommentList>
         {data.comments.map((com) => (
-          <StyledSingleCommentContainer key={com.uid}>
+          <StyledSingleCommentContainer key={com.createdAt}>
+            {console.log(com)}
             {user.uid === com.uid && (
               <StyledDeleteButton onClick={() => handleDelete(com)}>
                 X

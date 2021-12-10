@@ -1,4 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
+//firebase
 import {
   doc,
   getDoc,
@@ -8,12 +11,11 @@ import {
   arrayUnion,
 } from "firebase/firestore";
 import { database } from "../../firebase/config";
-import { useEffect, useState } from "react";
-import Avatar from "../../components/avatar/Avatar";
+//context
 import { useAuthContext } from "../../hooks/useAuthContext";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
+//components
 import PhotoComment from "../../components/photoComment/PhotoComment";
-
+import Avatar from "../../components/avatar/Avatar";
 //Styles
 import {
   StyledPhotoTitle,
@@ -35,6 +37,8 @@ import {
   StyledDateContainer,
 } from "./PhotoDetailsStyle";
 
+const COLLECTION_PHOTOS = "photos";
+
 function PhotoDetails() {
   const [data, setData] = useState(null);
   const [newComment, setNewComment] = useState("");
@@ -44,7 +48,7 @@ function PhotoDetails() {
 
   useEffect(() => {
     const controller = new AbortController();
-    const docRef = doc(database, "photos", postID);
+    const docRef = doc(database, COLLECTION_PHOTOS, postID);
 
     getDoc(docRef).then((doc) => {
       setData(doc.data());
@@ -55,7 +59,7 @@ function PhotoDetails() {
 
   if (!data) return <div>Waiting for Data</div>;
 
-  const docRef = doc(database, "photos", postID);
+  const docRef = doc(database, COLLECTION_PHOTOS, postID);
   const handleDelete = async () => {
     await deleteDoc(docRef);
     navigate("/");
@@ -63,8 +67,6 @@ function PhotoDetails() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log(docRef);
 
     const commentToAdd = {
       displayName: user.displayName,

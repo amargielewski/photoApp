@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+
+//context
 import { useAuthContext } from "./useAuthContext";
 //firebase imports
 import { auth, fbStorage, database } from "../firebase/config";

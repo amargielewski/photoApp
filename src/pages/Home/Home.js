@@ -1,8 +1,11 @@
-import PhotoList from "../../components/photoList/PhotoList";
-import { useCollection } from "../../hooks/useCollection";
-import { ArrowUp } from "react-feather";
 import { useState, useEffect } from "react";
-
+//icons
+import { ArrowUp } from "react-feather";
+//hooks
+import { useCollection } from "../../hooks/useCollection";
+//components
+import PhotoList from "../../components/photoList/PhotoList";
+//styles
 import {
   StyledInfoBox,
   StyledInput,
@@ -12,8 +15,10 @@ import {
   StyledScrollButton,
 } from "./HomeStyle";
 
+const COLLECTION_PHOTOS = "photos";
+
 function Home() {
-  const { documents, error } = useCollection("photos");
+  const { documents, error } = useCollection(COLLECTION_PHOTOS);
   const [name, setName] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {

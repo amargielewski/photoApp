@@ -1,8 +1,7 @@
 import { useState } from "react";
+//hooks
 import { useSignup } from "../../hooks/useSignup";
-
 //Styles
-
 import {
   StyledForm,
   StyledWrapper,
@@ -42,8 +41,8 @@ function Signup() {
       setAvatarError("Selected file must be image");
       return;
     }
-    if (selected.size > 500000) {
-      setAvatarError("Image file size must be less then 500000kb");
+    if (selected.size > 5000000) {
+      setAvatarError("Image file size must be less then 5000000kb");
       return;
     }
 
