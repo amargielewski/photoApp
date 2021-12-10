@@ -1,4 +1,6 @@
+//components
 import Avatar from "../avatar/Avatar";
+//styles
 import {
   StyledWrapper,
   StyledContainer,

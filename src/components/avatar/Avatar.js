@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+
+//Styles
 import styled from "styled-components";
 
 const StyledAvatar = styled.img`

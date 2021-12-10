@@ -1,3 +1,4 @@
+//styles
 import { createGlobalStyle, css } from "styled-components";
 const globalStyleCss = css`
   //reset
@@ -130,6 +131,12 @@ const globalStyleCss = css`
     padding: 0;
     background: ${({ theme }) => theme.colors.primaryBackground};
     font-family: "Roboto", sans-serif;
+  }
+
+  .scroll-block {
+    @media (max-width: 750px) {
+      overflow: hidden;
+    }
   }
 `;
 const GlobalStyle = createGlobalStyle`

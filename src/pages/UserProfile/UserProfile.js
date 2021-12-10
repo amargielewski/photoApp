@@ -1,6 +1,10 @@
-import { useParams } from "react-router-dom";
-import PhotoList from "../../components/photoList/PhotoList";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
+// components
+import PhotoList from "../../components/photoList/PhotoList";
+
+//firebase
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { database } from "./../../firebase/config";
 //Styles

@@ -1,4 +1,6 @@
+//context
 import { useAuthContext } from "../hooks/useAuthContext";
+//firebase
 import { auth } from "../firebase/config";
 import { signOut } from "firebase/auth";
 

@@ -1,10 +1,16 @@
-import { paths } from "../../paths/paths";
+import { useState } from "react";
+//icons
 import CameraIcon from "../../assets/images/camera.svg";
+//context
 import { useLayoutContext } from "../../hooks/useLayoutContext";
 import { useAuthContext } from "../../hooks/useAuthContext";
+//custom hooks
 import { useLogout } from "../../hooks/useLogout";
+//components
 import Avatar from "../avatar/Avatar";
-import { useState } from "react";
+//paths
+import { paths } from "../../paths/paths";
+//styles
 import {
   StyledContainer,
   StyledWrapper,
@@ -20,6 +26,7 @@ import {
   StyledNavWrapper,
   StyledMenuButtonOpen,
   StyledMenuButtonClose,
+  StyledLink,
 } from "./SidebarStyle";
 
 function Sidebar() {
@@ -40,6 +47,7 @@ function Sidebar() {
 
   const handleMenuClose = () => {
     setIsVisible(false);
+    dispatch({ type: "LOCK_BODY_SCROLL", payload: false });
   };
 
   const handleLogout = async () => {
@@ -51,8 +59,10 @@ function Sidebar() {
     <StyledContainer>
       <StyledWrapper>
         <StyledTitleContainer>
-          <StyledTitle>PhotoApp</StyledTitle>
-          <StyledImage src={CameraIcon} />
+          <StyledLink to={paths.home}>
+            <StyledTitle>PhotoApp</StyledTitle>
+            <StyledImage src={CameraIcon} />
+          </StyledLink>
           {user && (
             <StyledUserContainer>
               <StyledUsername>Hi {user.displayName}</StyledUsername>
