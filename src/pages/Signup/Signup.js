@@ -12,6 +12,9 @@ import {
   StyledButton,
 } from "./SignupStyle";
 
+//text
+import { pageText } from "../../PageText/PageText";
+
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -59,9 +62,9 @@ function Signup() {
   return (
     <StyledWrapper>
       <StyledForm onSubmit={handleSubmit}>
-        <StyledTitle>Signup Page</StyledTitle>
+        <StyledTitle>{pageText.signup.title}</StyledTitle>
         <StyledLabel>
-          <StyledInputTitle>Email:</StyledInputTitle>
+          <StyledInputTitle>{pageText.signup.email}</StyledInputTitle>
           <StyledInput
             type="email"
             value={email}
@@ -70,7 +73,7 @@ function Signup() {
           />
         </StyledLabel>
         <StyledLabel>
-          <StyledInputTitle>Password:</StyledInputTitle>
+          <StyledInputTitle>{pageText.signup.password}</StyledInputTitle>
           <StyledInput
             type="password"
             onChange={(e) => setPassword(e.target.value)}
@@ -79,7 +82,7 @@ function Signup() {
           />
         </StyledLabel>
         <StyledLabel>
-          <StyledInputTitle>Name:</StyledInputTitle>
+          <StyledInputTitle>{pageText.signup.name}</StyledInputTitle>
           <StyledInput
             type="text"
             onChange={(e) => setName(e.target.value)}
@@ -88,13 +91,13 @@ function Signup() {
           />
         </StyledLabel>
         <StyledLabel>
-          <StyledInputTitle>Avatar:</StyledInputTitle>
+          <StyledInputTitle>{pageText.signup.avatar}</StyledInputTitle>
           <StyledInput type="file" onChange={handleFileChange} required />
         </StyledLabel>
         {!isPending ? (
-          <StyledButton>Signup</StyledButton>
+          <StyledButton>{pageText.signup.signupBtn}</StyledButton>
         ) : (
-          <StyledButton>Loading...</StyledButton>
+          <StyledButton>{pageText.signup.loadingBtn}</StyledButton>
         )}
 
         {avatarError && <div>{avatarError}</div>}

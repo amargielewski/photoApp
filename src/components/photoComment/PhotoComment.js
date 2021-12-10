@@ -7,6 +7,8 @@ import { database } from "../../firebase/config";
 import { onSnapshot, doc, arrayRemove, updateDoc } from "@firebase/firestore";
 //context
 import { useAuthContext } from "../../hooks/useAuthContext";
+//text
+import { pageText } from "../../PageText/PageText";
 //styles
 import {
   StyledWrapper,
@@ -18,7 +20,6 @@ import {
   StyledSingleCommentContainer,
   StyledCommentList,
 } from "./PhotoCommentStyle";
-import { compareAsc } from "date-fns";
 
 function PhotoComment({ id }) {
   const [data, setData] = useState(null);
@@ -40,8 +41,7 @@ function PhotoComment({ id }) {
       comments: arrayRemove(com),
     });
   };
-
-  if (!data) return <div>No Comments to load;c</div>;
+  if (!data) return <div>{pageText.PhotoComments.commentMsg}</div>;
   return (
     <StyledWrapper>
       <StyledCommentList>

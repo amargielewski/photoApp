@@ -15,6 +15,9 @@ import {
   StyledScrollButton,
 } from "./HomeStyle";
 
+//text
+import { pageText } from "../../PageText/PageText";
+
 const COLLECTION_PHOTOS = "photos";
 
 function Home() {
@@ -58,7 +61,7 @@ function Home() {
   return (
     <StyledWrapper>
       <StyledSearchContainer>
-        <StyledInputText>Search for photos by username:</StyledInputText>
+        <StyledInputText>{pageText.home.searchText}</StyledInputText>
         <StyledInput
           type="text"
           value={name}
