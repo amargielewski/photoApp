@@ -30,11 +30,12 @@ import {
   StyledMenuButtonOpen,
   StyledMenuButtonClose,
   StyledLink,
+  StyledError,
 } from "./SidebarStyle";
 
 function Sidebar() {
   const { user } = useAuthContext();
-  const { logout } = useLogout();
+  const { logout, error } = useLogout();
   const { dispatch } = useLayoutContext();
   const [isVisible, setIsVisible] = useState(false);
 
@@ -125,6 +126,7 @@ function Sidebar() {
                 {pageText.Sidebar.logout}
               </StyledLogoutButton>
             )}
+            {error && <StyledError></StyledError>}
           </LoginSignupWrapper>
         </StyledNavWrapper>
       </StyledWrapper>
