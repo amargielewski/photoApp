@@ -82,7 +82,7 @@ function Signup() {
           />
         </StyledLabel>
         <StyledLabel>
-          <StyledInputTitle>{pageText.signup.name}</StyledInputTitle>
+          <StyledInputTitle>{pageText.signup.displayName}</StyledInputTitle>
           <StyledInput
             type="text"
             onChange={(e) => setName(e.target.value)}
