@@ -58,6 +58,7 @@ export const pageText = {
     emailRequired: "Email is Required",
     nameRequired: "Name is Required",
     nameLength: "Max number of characters for name: 12",
+    fileImage: "File must be a Image",
   },
   UserProfile: {
     loading: "loading...",

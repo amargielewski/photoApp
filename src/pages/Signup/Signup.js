@@ -31,7 +31,6 @@ function Signup() {
     await signup(email, password, name, avatar[0]);
   };
 
-  console.log(errors);
   return (
     <StyledWrapper>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
