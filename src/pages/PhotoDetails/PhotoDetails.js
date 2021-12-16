@@ -125,12 +125,14 @@ function PhotoDetails() {
       </StyledContainer>
       <StyledCommentContainer>
         <PhotoComment id={postID} />
+
         <StyledForm onSubmit={handleSubmit}>
           <StyledFormLabel>
             <StyledFormTitle> {pageText.PhotoDetails.newCom}</StyledFormTitle>
             <StyledTextarea
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
+              req
             />
           </StyledFormLabel>
           <StyledButton> {pageText.PhotoDetails.addCom}</StyledButton>

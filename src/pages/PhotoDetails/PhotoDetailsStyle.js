@@ -83,6 +83,7 @@ const StyledDeleteButton = styled.button`
   cursor: pointer;
 `;
 const StyledCommentContainer = styled.div`
+  max-height: 100%;
   margin-left: 50px;
   margin-right: 20px;
   position: relative;

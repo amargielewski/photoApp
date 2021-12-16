@@ -59,6 +59,7 @@ export const pageText = {
     nameRequired: "Name is Required",
     nameLength: "Max number of characters for name: 12",
     fileImage: "File must be a Image",
+    fileSize: "File must be less then < 50000000kB",
   },
   UserProfile: {
     loading: "loading...",
