@@ -178,7 +178,7 @@ const StyledNavWrapper = styled.div`
   display: flex;
   align-self: stretch;
   flex-direction: column;
-  transition: 0.3s;
+  justify-content: flex-end;
 
   @media (max-width: 750px) {
     position: absolute;
