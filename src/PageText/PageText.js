@@ -42,6 +42,8 @@ export const pageText = {
     password: "Password:",
     loginBtn: "Login",
     loadingBtn: "Loading...",
+    passwordRequired: "Password is Required",
+    emailRequired: "Email is Required",
   },
 
   signup: {
@@ -52,6 +54,11 @@ export const pageText = {
     loadingBtn: "Loading...",
     displayName: "Name:",
     avatar: "Avatar:",
+    passwordRequired: "Password is Required",
+    emailRequired: "Email is Required",
+    nameRequired: "Name is Required",
+    nameLength: "Max number of characters for name: 12",
+    fileImage: "File must be a Image",
   },
   UserProfile: {
     loading: "loading...",

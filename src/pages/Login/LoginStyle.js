@@ -85,6 +85,12 @@ const StyledButton = styled.button`
   cursor: pointer;
   border-radius: ${({ theme }) => theme.borderRadius.primary};
 `;
+
+const StyledError = styled.div`
+  font-weight: ${({ theme }) => theme.fontWeight.medium};
+  padding-top: 10px;
+  text-align: center;
+`;
 export {
   StyledForm,
   StyledWrapper,
@@ -93,4 +99,5 @@ export {
   StyledInput,
   StyledLabel,
   StyledButton,
+  StyledError,
 };

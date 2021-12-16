@@ -10,97 +10,89 @@ import {
   StyledInput,
   StyledLabel,
   StyledButton,
+  StyledError,
 } from "./SignupStyle";
 
 //text
 import { pageText } from "../../PageText/PageText";
 
+//React-hook-form
+import { useForm } from "react-hook-form";
 function Signup() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState(null);
-  const [avatarError, setAvatarError] = useState(null);
   const { signup, isPending, error } = useSignup();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    await signup(email, password, name, avatar);
-
-    resetForm();
-  };
-
-  const handleFileChange = (e) => {
-    setAvatar(null);
-
-    let selected = e.target.files[0];
-
-    if (!selected) {
-      setAvatarError("Please Select a File");
-      return;
-    }
-    if (!selected.type.includes("image")) {
-      setAvatarError("Selected file must be image");
-      return;
-    }
-    if (selected.size > 5000000) {
-      setAvatarError("Image file size must be less then 5000000kb");
-      return;
-    }
-
-    setAvatar(selected);
-  };
-
-  const resetForm = () => {
-    setEmail("");
-    setPassword("");
-    setName("");
-    setAvatar(null);
+  const onSubmit = async ({ email, password, name, avatar }) => {
+    await signup(email, password, name, avatar[0]);
   };
 
   return (
     <StyledWrapper>
-      <StyledForm onSubmit={handleSubmit}>
+      <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledTitle>{pageText.signup.title}</StyledTitle>
         <StyledLabel>
           <StyledInputTitle>{pageText.signup.email}</StyledInputTitle>
           <StyledInput
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
+            {...register("email", { required: true })}
           />
+          {errors.email?.type === "required" && (
+            <StyledError>{pageText.signup.emailRequired}</StyledError>
+          )}
         </StyledLabel>
         <StyledLabel>
           <StyledInputTitle>{pageText.signup.password}</StyledInputTitle>
           <StyledInput
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            required
+            {...register("password", { required: true })}
+            autoComplete="off"
           />
+          {errors.password?.type === "required" && (
+            <StyledError>{pageText.signup.passwordRequired}</StyledError>
+          )}
         </StyledLabel>
         <StyledLabel>
           <StyledInputTitle>{pageText.signup.displayName}</StyledInputTitle>
           <StyledInput
             type="text"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-            required
+            {...register("name", { required: true, maxLength: 12 })}
           />
+          {errors.name?.type === "required" && (
+            <StyledError>{pageText.signup.nameRequired}</StyledError>
+          )}
+          {errors.name?.type === "maxLength" && (
+            <StyledError>{pageText.signup.nameLength}</StyledError>
+          )}
         </StyledLabel>
         <StyledLabel>
           <StyledInputTitle>{pageText.signup.avatar}</StyledInputTitle>
-          <StyledInput type="file" onChange={handleFileChange} required />
+          <StyledInput
+            type="file"
+            {...register("avatar", {
+              required: true,
+              validate: {
+                lessThanSize: (files) => files[0]?.size < 50000000,
+                includesImage: (files) => files[0].type.includes("image"),
+              },
+            })}
+          />
+          {errors.avatar?.type === "includesImage" && (
+            <StyledError>File must be a Image</StyledError>
+          )}
+          {errors.avatar?.type === "lessThanSize" && (
+            <StyledError>no Bigger than</StyledError>
+          )}
         </StyledLabel>
         {!isPending ? (
           <StyledButton>{pageText.signup.signupBtn}</StyledButton>
         ) : (
           <StyledButton>{pageText.signup.loadingBtn}</StyledButton>
         )}
-
-        {avatarError && <div>{avatarError}</div>}
 
         {error && <div>{error}</div>}
       </StyledForm>

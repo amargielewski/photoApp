@@ -17,7 +17,7 @@ const StyledWrapper = styled.div`
 const StyledForm = styled.form`
   padding: 20px 80px;
 
-  height: 500px;
+  height: 550px;
   box-shadow: ${({ theme }) => theme.boxShadow.primary};
   display: flex;
   flex-direction: column;
@@ -91,6 +91,12 @@ const StyledButton = styled.button`
   border-radius: ${({ theme }) => theme.borderRadius.primary};
 `;
 
+const StyledError = styled.div`
+  font-weight: ${({ theme }) => theme.fontWeight.medium};
+  padding-top: 10px;
+  text-align: center;
+`;
+
 export {
   StyledForm,
   StyledWrapper,
@@ -99,4 +105,5 @@ export {
   StyledInput,
   StyledLabel,
   StyledButton,
+  StyledError,
 };

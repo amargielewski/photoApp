@@ -12,46 +12,57 @@ import {
   StyledInput,
   StyledLabel,
   StyledButton,
+  StyledError,
 } from "./LoginStyle";
 
+import { useForm } from "react-hook-form";
+
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const { login, isPending, error } = useLogin();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async ({ email, password }) => {
+    console.log(email, password);
+
     await login(email, password);
   };
 
   return (
     <StyledWrapper>
-      <StyledForm onSubmit={handleSubmit}>
+      <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledTitle> {pageText.Login.title}</StyledTitle>
         <StyledLabel>
           <StyledInputTitle>{pageText.Login.email}</StyledInputTitle>
           <StyledInput
             type="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            required
+            {...register("email", { required: true })}
           />
+          {errors.email?.type === "required" && (
+            <StyledError>{pageText.Login.emailRequired}</StyledError>
+          )}
         </StyledLabel>
         <StyledLabel>
           <StyledInputTitle>{pageText.Login.password}</StyledInputTitle>
           <StyledInput
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            required
+            autoComplete="off"
+            {...register("password", { required: true })}
           />
+          {errors.password?.type === "required" && (
+            <StyledError>{pageText.Login.passwordRequired}</StyledError>
+          )}
         </StyledLabel>
         {!isPending ? (
           <StyledButton>{pageText.Login.loginBtn}</StyledButton>
         ) : (
           <StyledButton>{pageText.Login.loadingBtn}</StyledButton>
         )}
-        {error && <p>{error}</p>}
+        {error && <StyledError>{error}</StyledError>}
       </StyledForm>
     </StyledWrapper>
   );
