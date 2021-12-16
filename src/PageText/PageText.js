@@ -42,6 +42,8 @@ export const pageText = {
     password: "Password:",
     loginBtn: "Login",
     loadingBtn: "Loading...",
+    passwordRequired: "Password is Required",
+    emailRequired: "Email is Required",
   },
 
   signup: {
