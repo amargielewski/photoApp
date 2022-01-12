@@ -85,6 +85,14 @@ function PhotoDetails() {
     setNewComment("");
   };
 
+  const commentSubmitOnEnter = (e) => {
+    if (e.target.value.trim().length > 0) {
+      if (e.key === "Enter" && e.shiftKey === false) {
+        return handleSubmit(e);
+      }
+    }
+  };
+
   return (
     <StyledWrapper>
       <StyledContainer>
@@ -132,7 +140,8 @@ function PhotoDetails() {
             <StyledTextarea
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
-              req
+              required
+              onKeyPress={commentSubmitOnEnter}
             />
           </StyledFormLabel>
           <StyledButton> {pageText.PhotoDetails.addCom}</StyledButton>

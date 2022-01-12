@@ -91,7 +91,9 @@ const StyledCommentContainer = styled.div`
     align-self: center;
   }
 `;
-const StyledFormTitle = styled.span``;
+const StyledFormTitle = styled.span`
+  margin-top: 10px;
+`;
 
 const StyledFormLabel = styled.label`
   display: flex;
