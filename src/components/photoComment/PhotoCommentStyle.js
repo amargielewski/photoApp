@@ -10,6 +10,8 @@ const StyledCommentContent = styled.p`
 `;
 
 const StyledCommentList = styled.ul`
+  overflow-y: scroll;
+  max-height: 500px;
   list-style: none;
 `;
 const StyledSingleCommentContainer = styled.li`

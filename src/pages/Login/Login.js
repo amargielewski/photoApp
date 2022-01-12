@@ -1,4 +1,3 @@
-import { useState } from "react";
 //text
 import { pageText } from "../../PageText/PageText";
 //hooks
@@ -17,6 +16,11 @@ import {
 
 import { useForm } from "react-hook-form";
 
+const defaultValues = {
+  password: "test12345",
+  email: "mario@photoapp.dev",
+};
+
 function Login() {
   const { login, isPending, error } = useLogin();
 
@@ -24,7 +28,7 @@ function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({});
 
   const onSubmit = async ({ email, password }) => {
     console.log(email, password);
@@ -40,7 +44,10 @@ function Login() {
           <StyledInputTitle>{pageText.Login.email}</StyledInputTitle>
           <StyledInput
             type="email"
-            {...register("email", { required: true })}
+            defaultValue={defaultValues.email}
+            {...register("email", {
+              required: true,
+            })}
           />
           {errors.email?.type === "required" && (
             <StyledError>{pageText.Login.emailRequired}</StyledError>
@@ -51,6 +58,7 @@ function Login() {
           <StyledInput
             type="password"
             autoComplete="off"
+            defaultValue={defaultValues.password}
             {...register("password", { required: true })}
           />
           {errors.password?.type === "required" && (

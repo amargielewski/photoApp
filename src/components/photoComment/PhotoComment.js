@@ -1,5 +1,5 @@
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 //components
 import Avatar from "../avatar/Avatar";
 //firebase
@@ -24,6 +24,14 @@ import {
 function PhotoComment({ id }) {
   const [data, setData] = useState(null);
   const { user } = useAuthContext();
+  const chatListRef = useRef(null);
+
+  useEffect(() => {
+    if (!chatListRef.current) return;
+    const element = chatListRef.current;
+
+    element.scrollTop = element.scrollHeight - element.clientHeight;
+  }, [data]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -44,7 +52,7 @@ function PhotoComment({ id }) {
   if (!data) return <div>{pageText.PhotoComments.commentMsg}</div>;
   return (
     <StyledWrapper>
-      <StyledCommentList>
+      <StyledCommentList ref={chatListRef}>
         {data.comments.map((com) => (
           <StyledSingleCommentContainer key={com.createdAt}>
             {user.uid === com.uid && (
