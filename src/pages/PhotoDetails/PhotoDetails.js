@@ -38,7 +38,10 @@ import {
   StyledDeleteButton,
   StyledAvatarContainer,
   StyledDateContainer,
+  StyledConfirmationDeleteButton,
+  StyledConfirmationCancelButton,
 } from "./PhotoDetailsStyle";
+import { DeleteModal } from "../../components/DeleteModal/DeleteModal";
 
 const COLLECTION_PHOTOS = "photos";
 
@@ -48,6 +51,7 @@ function PhotoDetails() {
   const { id: postID } = useParams();
   const { user } = useAuthContext();
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -66,6 +70,14 @@ function PhotoDetails() {
   const handleDelete = async () => {
     await deleteDoc(docRef);
     navigate("/");
+  };
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
   };
 
   const handleSubmit = async (e) => {
@@ -97,7 +109,7 @@ function PhotoDetails() {
     <StyledWrapper>
       <StyledContainer>
         {user.uid === data.createdBy.id && (
-          <StyledDeleteButton onClick={handleDelete}>
+          <StyledDeleteButton onClick={handleModalOpen}>
             {pageText.PhotoDetails.deleteBtn}
           </StyledDeleteButton>
         )}
@@ -147,6 +159,16 @@ function PhotoDetails() {
           <StyledButton> {pageText.PhotoDetails.addCom}</StyledButton>
         </StyledForm>
       </StyledCommentContainer>
+      {isModalOpen && (
+        <DeleteModal>
+          <StyledConfirmationDeleteButton onClick={handleDelete}>
+            Delete
+          </StyledConfirmationDeleteButton>
+          <StyledConfirmationCancelButton onClick={handleModalClose}>
+            Cancel
+          </StyledConfirmationCancelButton>
+        </DeleteModal>
+      )}
     </StyledWrapper>
   );
 }

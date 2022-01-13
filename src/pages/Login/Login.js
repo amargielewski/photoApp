@@ -12,6 +12,8 @@ import {
   StyledLabel,
   StyledButton,
   StyledError,
+  StyledTestContainer,
+  StyledTestText,
 } from "./LoginStyle";
 
 import { useForm } from "react-hook-form";
@@ -39,12 +41,17 @@ function Login() {
   return (
     <StyledWrapper>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
+        <StyledTestContainer>
+          <StyledTestText>Test Credentials</StyledTestText>
+          <StyledTestText>Email: {defaultValues.email}</StyledTestText>
+          <StyledTestText>Password: {defaultValues.password}</StyledTestText>
+        </StyledTestContainer>
         <StyledTitle> {pageText.Login.title}</StyledTitle>
+
         <StyledLabel>
           <StyledInputTitle>{pageText.Login.email}</StyledInputTitle>
           <StyledInput
             type="email"
-            defaultValue={defaultValues.email}
             {...register("email", {
               required: true,
             })}
@@ -58,7 +65,6 @@ function Login() {
           <StyledInput
             type="password"
             autoComplete="off"
-            defaultValue={defaultValues.password}
             {...register("password", { required: true })}
           />
           {errors.password?.type === "required" && (

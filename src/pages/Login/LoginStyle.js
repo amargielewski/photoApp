@@ -91,6 +91,14 @@ const StyledError = styled.div`
   padding-top: 10px;
   text-align: center;
 `;
+
+const StyledTestContainer = styled.div`
+  align-self: flex-start;
+`;
+const StyledTestText = styled.p`
+  padding: 1px 0;
+  font-weight: 300;
+`;
 export {
   StyledForm,
   StyledWrapper,
@@ -100,4 +108,6 @@ export {
   StyledLabel,
   StyledButton,
   StyledError,
+  StyledTestContainer,
+  StyledTestText,
 };

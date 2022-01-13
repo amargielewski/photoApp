@@ -2,6 +2,7 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { useEffect, useState, useRef } from "react";
 //components
 import Avatar from "../avatar/Avatar";
+import { DeleteModal } from "../DeleteModal/DeleteModal";
 //firebase
 import { database } from "../../firebase/config";
 import { onSnapshot, doc, arrayRemove, updateDoc } from "@firebase/firestore";
@@ -18,6 +19,8 @@ import {
   StyledDateText,
   StyledUserContainer,
   StyledSingleCommentContainer,
+  StyledConfirmationDeleteButton,
+  StyledConfirmationCancelButton,
   StyledCommentList,
 } from "./PhotoCommentStyle";
 
@@ -25,6 +28,8 @@ function PhotoComment({ id }) {
   const [data, setData] = useState(null);
   const { user } = useAuthContext();
   const chatListRef = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [comment, setComment] = useState(null);
 
   useEffect(() => {
     if (!chatListRef.current) return;
@@ -43,11 +48,22 @@ function PhotoComment({ id }) {
     return () => controller.abort();
   }, [id]);
 
+  const handleModalOpen = (com) => {
+    setComment(com);
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setComment(null);
+  };
+
   const handleDelete = async (com) => {
     const commentRef = doc(database, "photos", id);
     await updateDoc(commentRef, {
-      comments: arrayRemove(com),
+      comments: arrayRemove(comment),
     });
+    setIsModalOpen(false);
   };
   if (!data) return <div>{pageText.PhotoComments.commentMsg}</div>;
   return (
@@ -56,7 +72,7 @@ function PhotoComment({ id }) {
         {data.comments.map((com) => (
           <StyledSingleCommentContainer key={com.createdAt}>
             {user.uid === com.uid && (
-              <StyledDeleteButton onClick={() => handleDelete(com)}>
+              <StyledDeleteButton onClick={() => handleModalOpen(com)}>
                 X
               </StyledDeleteButton>
             )}
@@ -73,6 +89,16 @@ function PhotoComment({ id }) {
           </StyledSingleCommentContainer>
         ))}
       </StyledCommentList>
+      {isModalOpen && (
+        <DeleteModal>
+          <StyledConfirmationDeleteButton onClick={() => handleDelete(comment)}>
+            Delete
+          </StyledConfirmationDeleteButton>
+          <StyledConfirmationCancelButton onClick={handleModalClose}>
+            Cancel
+          </StyledConfirmationCancelButton>
+        </DeleteModal>
+      )}
     </StyledWrapper>
   );
 }
