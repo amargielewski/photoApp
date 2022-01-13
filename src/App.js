@@ -28,6 +28,10 @@ const StyledContainer = styled.div`
   height: 100%;
   padding-left: 300px;
 
+  @media (max-width: 1000px) {
+    padding-left: 200px;
+  }
+
   @media (max-width: 750px) {
     padding-left: 0;
     padding-top: 60px;

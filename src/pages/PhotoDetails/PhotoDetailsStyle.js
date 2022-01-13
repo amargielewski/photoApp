@@ -1,15 +1,11 @@
 import styled, { css } from "styled-components";
 const StyledWrapper = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   height: 100vh;
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1400px) {
     flex-direction: column;
-    align-items: center;
-    height: 100%;
-    margin: 20px 0;
   }
 `;
 
@@ -86,8 +82,11 @@ const StyledCommentContainer = styled.div`
   margin-left: 50px;
   margin-right: 20px;
   position: relative;
-  @media (max-width: 1200px) {
-    align-self: center;
+  padding-bottom: 20px;
+  @media (max-width: 1400px) {
+    align-self: flex-start;
+    padding-left: 20px;
+    margin-top: 20px;
   }
 `;
 const StyledFormTitle = styled.span`
@@ -104,6 +103,7 @@ const StyledTextarea = styled.textarea`
   padding: 15px;
   margin: 10px 0;
   font-size: ${({ theme }) => theme.fontSize.s};
+  resize: none;
 `;
 
 const StyledForm = styled.form`

@@ -13,6 +13,10 @@ const StyledContainer = styled.div`
   left: 0;
   z-index: 10;
 
+  @media (max-width: 1000px) {
+    min-width: 200px;
+  }
+
   @media (max-width: 750px) {
     width: 100%;
     height: 70px;
@@ -40,12 +44,17 @@ const LoginSignupWrapper = styled.div`
       padding: 20px 30px;
       font-size: ${({ theme }) => theme.fontSize.l};
     }
+
+    :hover {
+      background-color: ${({ theme }) => theme.colors.primaryBackground};
+      color: ${({ theme }) => theme.colors.primary};
+      transform: translateY(-5px);
+    }
   }
 
   .active {
     background-color: ${({ theme }) => theme.colors.primaryBackground};
     color: ${({ theme }) => theme.colors.primary};
-    transform: translateY(-10px);
   }
 
   @media (max-width: 750px) {
@@ -128,6 +137,10 @@ const StyledUserContainer = styled.div`
       height: 1px;
       background-color: ${({ theme }) => theme.colors.secondaryFont};
       bottom: -10px;
+
+      @media (max-width: 1000px) {
+        width: 200px;
+      }
     }
   }
 
