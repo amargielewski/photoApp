@@ -1,9 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 const StyledWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   height: 100vh;
 
   @media (max-width: 1200px) {
@@ -133,6 +132,31 @@ const StyledPhotoDescription = styled.p`
   max-width: 700px;
 `;
 
+const StyledConfirmationButton = css`
+  padding: 12px 30px;
+  font-size: 20px;
+  color: ${({ theme }) => theme.colors.secondaryFont};
+  border: none;
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
+  cursor: pointer;
+  transition: 0.2s;
+
+  :hover {
+    transform: translateY(-5px);
+  }
+`;
+
+const StyledConfirmationDeleteButton = styled.button`
+  ${StyledConfirmationButton};
+  background: #a63446;
+`;
+
+const StyledConfirmationCancelButton = styled.button`
+  ${StyledConfirmationButton};
+  border: 2px solid #a63446;
+  color: ${({ theme }) => theme.colors.primaryFont};
+`;
+
 export {
   StyledPhotoTitle,
   StyledPhotoDescription,
@@ -151,4 +175,6 @@ export {
   StyledDeleteButton,
   StyledAvatarContainer,
   StyledDateContainer,
+  StyledConfirmationDeleteButton,
+  StyledConfirmationCancelButton,
 };

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const StyledWrapper = styled.div``;
 const StyledName = styled.p`
@@ -54,6 +54,31 @@ const StyledDeleteButton = styled.div`
   cursor: pointer;
 `;
 
+const StyledConfirmationButton = css`
+  padding: 12px 30px;
+  font-size: 20px;
+  color: ${({ theme }) => theme.colors.secondaryFont};
+  border: none;
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
+  cursor: pointer;
+  transition: 0.2s;
+
+  :hover {
+    transform: translateY(-5px);
+  }
+`;
+
+const StyledConfirmationDeleteButton = styled.button`
+  ${StyledConfirmationButton};
+  background: #a63446;
+`;
+
+const StyledConfirmationCancelButton = styled.button`
+  ${StyledConfirmationButton};
+  border: 2px solid #a63446;
+  color: ${({ theme }) => theme.colors.primaryFont};
+`;
+
 export {
   StyledWrapper,
   StyledName,
@@ -63,4 +88,6 @@ export {
   StyledUserContainer,
   StyledSingleCommentContainer,
   StyledCommentList,
+  StyledConfirmationDeleteButton,
+  StyledConfirmationCancelButton,
 };
